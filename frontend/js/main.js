@@ -1,131 +1,170 @@
-/**
- * Pizza Making Guide — Navigation & Table of Contents
- * Builds TOC dynamically, highlights active section via IntersectionObserver,
- * and drives a scroll-progress bar.
- */
-
-(function () {
-  'use strict';
-
-  // ── 1. Build Table of Contents ──────────────────────────────────────────────
-  const sections = Array.from(document.querySelectorAll('.content-section'));
-  const tocList  = document.getElementById('toc-list');
-
-  if (!tocList || sections.length === 0) return;
-
-  sections.forEach((section) => {
-    const heading = section.querySelector('h2');
-    if (!heading) return;
-
-    const id    = section.id;
-    const label = heading.textContent.trim();
-
-    const li = document.createElement('li');
-    li.dataset.section = id;
-
-    const a = document.createElement('a');
-    a.href        = `#${id}`;
-    a.textContent = label;
-    a.setAttribute('aria-label', `Jump to ${label}`);
-
-    // Smooth scroll with JS (belt-and-suspenders for browsers that honour
-    // scroll-behavior:smooth on the html element already).
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.getElementById(id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Update URL hash without triggering a jump
-        history.pushState(null, '', `#${id}`);
-      }
+// ===== Section toggle =====
+function initSectionToggles() {
+  document.querySelectorAll('.section-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggleSection(btn);
     });
+  });
+}
 
-    li.appendChild(a);
-    tocList.appendChild(li);
+function toggleSection(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  const bodyId = btn.getAttribute('aria-controls');
+  const body = document.getElementById(bodyId);
+  if (!body) return;
+
+  btn.setAttribute('aria-expanded', String(!expanded));
+  body.hidden = expanded;
+}
+
+function expandSection(btn) {
+  const bodyId = btn.getAttribute('aria-controls');
+  const body = document.getElementById(bodyId);
+  if (!body) return;
+  btn.setAttribute('aria-expanded', 'true');
+  body.hidden = false;
+}
+
+function collapseSection(btn) {
+  const bodyId = btn.getAttribute('aria-controls');
+  const body = document.getElementById(bodyId);
+  if (!body) return;
+  btn.setAttribute('aria-expanded', 'false');
+  body.hidden = true;
+}
+
+// ===== Search =====
+
+/**
+ * Walk the DOM of `node`, replacing text that matches `regex` with
+ * <mark class="search-highlight"> elements. We avoid descending into
+ * elements we don't want to mutate (script, style, mark).
+ */
+function highlightTextInNode(node, regex) {
+  if (node.nodeType === Node.TEXT_NODE) {
+    const text = node.textContent;
+    if (!regex.test(text)) return;
+    regex.lastIndex = 0; // reset after test()
+
+    const frag = document.createDocumentFragment();
+    let lastIndex = 0;
+    let match;
+
+    regex.lastIndex = 0;
+    while ((match = regex.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        frag.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+      }
+      const mark = document.createElement('mark');
+      mark.className = 'search-highlight';
+      mark.textContent = match[0];
+      frag.appendChild(mark);
+      lastIndex = regex.lastIndex;
+    }
+    if (lastIndex < text.length) {
+      frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+    }
+
+    node.parentNode.replaceChild(frag, node);
+    return;
+  }
+
+  if (node.nodeType === Node.ELEMENT_NODE) {
+    const tag = node.tagName.toLowerCase();
+    if (['script', 'style', 'mark', 'input', 'button'].includes(tag)) return;
+    // Clone children list because we may mutate it
+    Array.from(node.childNodes).forEach(child => highlightTextInNode(child, regex));
+  }
+}
+
+/**
+ * Strip all <mark class="search-highlight"> wrappers, restoring plain text.
+ */
+function removeHighlights(container) {
+  container.querySelectorAll('mark.search-highlight').forEach(mark => {
+    const parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize();
+  });
+}
+
+function initSearch() {
+  const input = document.getElementById('site-search');
+  const noResults = document.getElementById('no-results');
+  const noResultsQuery = document.getElementById('no-results-query');
+  const sections = Array.from(document.querySelectorAll('.guide-section'));
+
+  if (!input) return;
+
+  // Store original HTML per section body so we can restore cleanly.
+  // We use a live remove-highlights approach instead of innerHTML restore
+  // to preserve event listeners.
+
+  let debounceTimer = null;
+
+  input.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => runSearch(input.value.trim()), 150);
   });
 
-  // ── 2. Active-section highlighting via IntersectionObserver ─────────────────
-  const tocItems = Array.from(tocList.querySelectorAll('li'));
+  function runSearch(query) {
+    // 1. Remove previous highlights from all section bodies
+    sections.forEach(section => {
+      const body = section.querySelector('.section-body');
+      if (body) removeHighlights(body);
+    });
 
-  // Track which sections are currently intersecting
-  const visibleSections = new Set();
+    // 2. If query is empty, restore default state
+    if (!query) {
+      sections.forEach(section => {
+        section.classList.remove('search-hidden');
+        const btn = section.querySelector('.section-toggle');
+        if (btn) collapseSection(btn);
+      });
+      noResults.hidden = true;
+      return;
+    }
 
-  function updateActiveTocItem() {
-    // Find the topmost visible section (smallest offsetTop among visible)
-    let activeId = null;
-    let minTop   = Infinity;
+    // 3. Build case-insensitive regex
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(escaped, 'gi');
 
-    visibleSections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) {
-        const top = el.getBoundingClientRect().top;
-        if (top < minTop) {
-          minTop   = top;
-          activeId = id;
-        }
+    let anyVisible = false;
+
+    sections.forEach(section => {
+      const body = section.querySelector('.section-body');
+      const btn = section.querySelector('.section-toggle');
+      if (!body || !btn) return;
+
+      // Check if section contains a match (search in text content of body)
+      const bodyText = body.textContent;
+      const hasMatch = new RegExp(escaped, 'i').test(bodyText);
+
+      if (hasMatch) {
+        section.classList.remove('search-hidden');
+        expandSection(btn);
+        // Highlight matching text
+        const freshRegex = new RegExp(escaped, 'gi');
+        highlightTextInNode(body, freshRegex);
+        anyVisible = true;
+      } else {
+        section.classList.add('search-hidden');
+        collapseSection(btn);
       }
     });
 
-    // If nothing is intersecting, fall back to the last section above the fold
-    if (!activeId) {
-      let bestTop = -Infinity;
-      sections.forEach((section) => {
-        const top = section.getBoundingClientRect().top;
-        if (top <= 0 && top > bestTop) {
-          bestTop  = top;
-          activeId = section.id;
-        }
-      });
-    }
-
-    tocItems.forEach((li) => {
-      li.classList.toggle('active', li.dataset.section === activeId);
-    });
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          visibleSections.add(entry.target.id);
-        } else {
-          visibleSections.delete(entry.target.id);
-        }
-      });
-      updateActiveTocItem();
-    },
-    {
-      root      : null,
-      // Trigger when a section enters the top 60 % of the viewport
-      rootMargin: '0px 0px -40% 0px',
-      threshold : 0,
-    }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-
-  // ── 3. Scroll Progress Bar ───────────────────────────────────────────────────
-  const progressBar = document.getElementById('progress-bar');
-
-  function updateProgressBar() {
-    if (!progressBar) return;
-    const scrollTop    = window.scrollY || document.documentElement.scrollTop;
-    const docHeight    = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled     = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progressBar.style.width = `${Math.min(scrolled, 100)}%`;
-  }
-
-  window.addEventListener('scroll', updateProgressBar, { passive: true });
-  updateProgressBar(); // initialise on load
-
-  // ── 4. Honour deep-link on page load ────────────────────────────────────────
-  if (window.location.hash) {
-    const target = document.querySelector(window.location.hash);
-    if (target) {
-      // Short delay lets the browser finish rendering before scrolling
-      setTimeout(() => {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+    // 4. No-results message
+    if (!anyVisible) {
+      noResultsQuery.textContent = query;
+      noResults.hidden = false;
+    } else {
+      noResults.hidden = true;
     }
   }
-}());
+}
+
+// ===== Init =====
+document.addEventListener('DOMContentLoaded', () => {
+  initSectionToggles();
+  initSearch();
+});
