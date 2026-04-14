@@ -1,494 +1,433 @@
-/* ===========================
-   Base & Reset
-=========================== */
+/* ============================================================
+   Pizza Making Guide — Global Styles
+   ============================================================ */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+:root {
+  --color-bg: #fdf8f2;
+  --color-surface: #ffffff;
+  --color-primary: #c0392b;
+  --color-primary-dark: #962d22;
+  --color-accent: #e67e22;
+  --color-text: #2c2c2c;
+  --color-text-muted: #666;
+  --color-border: #e0d6ca;
+  --color-tip-bg: #fffbf5;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+  --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --max-width: 1100px;
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.65;
   font-size: 16px;
-  line-height: 1.6;
-  color: #2d2d2d;
-  background: #faf9f7;
 }
 
 .container {
-  max-width: 860px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.25rem;
 }
 
-/* ===========================
-   Site Header
-=========================== */
+/* ============================================================
+   Header
+   ============================================================ */
+
 .site-header {
-  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #8b1a10 100%);
   color: #fff;
   padding: 2.5rem 0 2rem;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .site-header h1 {
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 800;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.02em;
 }
 
-.site-header .tagline {
+.tagline {
   margin-top: 0.4rem;
-  font-size: 1rem;
-  opacity: 0.9;
+  font-size: 1.05rem;
+  opacity: 0.88;
 }
 
-/* ===========================
-   Guide Section
-=========================== */
+/* ============================================================
+   Navigation
+   ============================================================ */
+
+.main-nav {
+  background: #fff;
+  border-bottom: 2px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.85rem 1.25rem;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* ============================================================
+   Main layout
+   ============================================================ */
+
+main.container {
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+/* ============================================================
+   Section
+   ============================================================ */
+
 .guide-section {
-  padding: 2.5rem 0 3rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 2rem 2rem 2.5rem;
+  box-shadow: var(--shadow);
+}
+
+.section-header h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
 }
 
 .section-intro {
+  color: var(--color-text-muted);
+  max-width: 780px;
   margin-bottom: 1.75rem;
+  font-size: 0.97rem;
 }
 
-.section-intro h2 {
-  font-size: 1.9rem;
+/* ============================================================
+   Dropdowns
+   ============================================================ */
+
+.dropdown-group,
+.sub-dropdown-group {
+  margin-bottom: 1.5rem;
+}
+
+.dropdown-label {
+  display: block;
   font-weight: 700;
-  color: #1a1a1a;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 0.4rem;
 }
 
-.section-intro p {
-  color: #555;
-  font-size: 1.05rem;
-}
-
-/* ===========================
-   Accordion
-=========================== */
-.accordion {
-  border: 1px solid #e0ddd8;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  overflow: hidden;
-  transition: box-shadow 0.2s;
-}
-
-.accordion:focus-within {
-  box-shadow: 0 0 0 3px rgba(192,57,43,0.25);
-}
-
-.accordion-trigger {
+.styled-select {
+  appearance: none;
+  -webkit-appearance: none;
   width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.1rem 1.25rem;
-  background: none;
-  border: none;
+  max-width: 440px;
+  padding: 0.7rem 2.5rem 0.7rem 1rem;
+  font-size: 1rem;
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23c0392b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  text-align: left;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  transition: background 0.15s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.accordion-trigger:hover {
-  background: #fdf5f4;
+.styled-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15);
 }
 
-.accordion-trigger[aria-expanded="true"] {
-  background: #fdf5f4;
-  border-bottom: 1px solid #e0ddd8;
+.styled-select--sm {
+  max-width: 360px;
+  font-size: 0.95rem;
 }
 
-.accordion-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
+/* ============================================================
+   Sauce Panels
+   ============================================================ */
+
+.sauce-panel {
+  animation: fadeSlideIn 0.3s ease;
 }
 
-.accordion-title {
-  flex: 1;
-}
-
-.accordion-chevron {
-  display: inline-block;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-right: 2px solid #c0392b;
-  border-bottom: 2px solid #c0392b;
-  transform: rotate(45deg);
-  transition: transform 0.25s ease;
-  flex-shrink: 0;
-  margin-right: 0.25rem;
-}
-
-.accordion-trigger[aria-expanded="true"] .accordion-chevron {
-  transform: rotate(-135deg);
-}
-
-.accordion-panel {
-  overflow: hidden;
-  transition: max-height 0.35s ease, opacity 0.25s ease;
-}
-
-.accordion-panel[hidden] {
+.sauce-panel.hidden {
   display: none;
 }
 
-.accordion-content {
-  padding: 1.5rem 1.25rem 1.75rem;
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.panel-intro {
-  color: #555;
-  margin-bottom: 1.25rem;
-  font-size: 0.98rem;
+.panel-inner {
+  border-top: 3px solid var(--color-primary);
+  padding-top: 1.5rem;
 }
 
-/* ===========================
-   Recipe Grid & Tables
-=========================== */
-.recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-.recipe-card {
-  background: #faf9f7;
-  border: 1px solid #e8e5e1;
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-.recipe-card h4 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: #c0392b;
-}
-
-.ingredient-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-}
-
-.ingredient-table th {
-  background: #f0ece8;
-  padding: 0.4rem 0.5rem;
-  text-align: left;
-  font-weight: 600;
-  color: #444;
-}
-
-.ingredient-table td {
-  padding: 0.35rem 0.5rem;
-  border-bottom: 1px solid #ede9e4;
-}
-
-.ingredient-table tr:last-child td {
-  border-bottom: none;
-}
-
-/* ===========================
-   Proof Table
-=========================== */
-.proof-table-wrapper {
-  overflow-x: auto;
-  margin-bottom: 1.25rem;
-  border-radius: 8px;
-  border: 1px solid #e0ddd8;
-}
-
-.proof-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  min-width: 520px;
-}
-
-.proof-table th {
-  background: #c0392b;
-  color: #fff;
-  padding: 0.6rem 0.75rem;
-  text-align: left;
-  font-weight: 600;
-}
-
-.proof-table td {
-  padding: 0.55rem 0.75rem;
-  border-bottom: 1px solid #ede9e4;
-}
-
-.proof-table tr:last-child td {
-  border-bottom: none;
-}
-
-.proof-table tr:nth-child(even) td {
-  background: #faf9f7;
-}
-
-/* ===========================
-   Steps List
-=========================== */
-.steps-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-.step {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.step-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  min-width: 2rem;
-  background: #c0392b;
-  color: #fff;
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-top: 0.15rem;
-}
-
-.step-body h4 {
-  font-size: 0.98rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-  color: #1a1a1a;
-}
-
-.step-body p {
-  font-size: 0.92rem;
-  color: #444;
-}
-
-/* ===========================
-   Method Cards
-=========================== */
-.method-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.875rem;
-  margin-bottom: 1.5rem;
-}
-
-.method-card {
-  background: #fdf5f4;
-  border: 1px solid #f0dbd9;
-  border-left: 4px solid #c0392b;
-  border-radius: 6px;
-  padding: 0.875rem;
-}
-
-.method-card h4 {
-  font-size: 0.93rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-  color: #c0392b;
-}
-
-.method-card p {
-  font-size: 0.88rem;
-  color: #444;
-}
-
-/* ===========================
-   Tips Block
-=========================== */
-.tips-block {
-  background: #fffbeb;
-  border: 1px solid #f0e08a;
-  border-left: 4px solid #f0c040;
-  border-radius: 6px;
-  padding: 1rem 1.1rem;
-  margin-bottom: 1.5rem;
-}
-
-.tips-block h4 {
-  font-size: 0.95rem;
-  font-weight: 700;
+.panel-inner h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
   margin-bottom: 0.5rem;
-  color: #7d6000;
+  color: var(--color-text);
 }
 
-.tips-block ul {
-  padding-left: 1.2rem;
-  font-size: 0.9rem;
-  color: #555;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+.panel-description {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  max-width: 700px;
 }
 
-/* ===========================
-   Video Embeds
-=========================== */
-.video-embed {
-  margin-top: 1.5rem;
+/* ============================================================
+   Info Grid
+   ============================================================ */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
 }
 
-.video-embed h4 {
-  font-size: 0.97rem;
+.info-card {
+  background: var(--color-tip-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.4rem;
+}
+
+.info-card h4 {
+  font-size: 0.95rem;
   font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
 }
 
-.video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  border-radius: 8px;
+.info-card ul,
+.info-card ol {
+  padding-left: 1.2rem;
+}
+
+.info-card li {
+  margin-bottom: 0.45rem;
+  font-size: 0.94rem;
+  color: var(--color-text);
+}
+
+/* ============================================================
+   Method Detail (sub-panel)
+   ============================================================ */
+
+.method-detail {
+  background: #fff8f6;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.5rem;
+  animation: fadeSlideIn 0.25s ease;
+}
+
+.method-detail.hidden {
+  display: none;
+}
+
+.method-detail h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 0.6rem;
+}
+
+.method-detail p {
+  font-size: 0.94rem;
+  margin-bottom: 0.5rem;
+}
+
+.method-detail ul,
+.method-detail ol {
+  padding-left: 1.2rem;
+}
+
+.method-detail li {
+  font-size: 0.94rem;
+  margin-bottom: 0.4rem;
+}
+
+/* ============================================================
+   Tips Row
+   ============================================================ */
+
+.tips-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.tip-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1.2rem 1.4rem;
+}
+
+.tip-block h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.tip-block ul {
+  padding-left: 1.2rem;
+}
+
+.tip-block li {
+  font-size: 0.93rem;
+  margin-bottom: 0.45rem;
+  color: var(--color-text);
+}
+
+.tip-block li strong {
+  color: var(--color-primary-dark);
+}
+
+/* ============================================================
+   Video Section
+   ============================================================ */
+
+.video-section {
+  margin-top: 0.5rem;
+}
+
+.video-section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.video-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   background: #000;
 }
 
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
 .video-wrapper iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: none;
 }
 
 .video-caption {
-  margin-top: 0.5rem;
-  font-size: 0.86rem;
-  color: #666;
-  font-style: italic;
-}
-
-/* ===========================
-   Troubleshooting Details
-=========================== */
-.trouble-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin-bottom: 1.5rem;
-}
-
-.trouble-item {
-  border: 1px solid #e0ddd8;
-  border-radius: 7px;
-  overflow: hidden;
-}
-
-.trouble-item summary {
-  padding: 0.8rem 1rem;
+  background: var(--color-surface);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
   font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #faf9f7;
-  user-select: none;
-  transition: background 0.15s;
+  border-top: 1px solid var(--color-border);
 }
 
-.trouble-item summary::-webkit-details-marker {
-  display: none;
-}
+/* ============================================================
+   Footer
+   ============================================================ */
 
-.trouble-item summary::before {
-  content: '+';
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.3rem;
-  height: 1.3rem;
-  min-width: 1.3rem;
-  border-radius: 50%;
-  background: #c0392b;
-  color: #fff;
-  font-size: 1rem;
-  line-height: 1;
-  font-weight: 700;
-  transition: transform 0.2s;
-}
-
-.trouble-item[open] summary::before {
-  content: '−';
-}
-
-.trouble-item summary:hover {
-  background: #f5f2ee;
-}
-
-.trouble-item[open] summary {
-  border-bottom: 1px solid #e0ddd8;
-  background: #fdf5f4;
-}
-
-.trouble-body {
-  padding: 0.9rem 1rem;
-  font-size: 0.91rem;
-  color: #444;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  background: #fff;
-}
-
-.trouble-body strong {
-  color: #1a1a1a;
-}
-
-/* ===========================
-   Site Footer
-=========================== */
 .site-footer {
-  background: #1a1a1a;
+  background: #2c2c2c;
   color: #aaa;
   text-align: center;
-  padding: 1.25rem 0;
+  padding: 1.5rem;
   font-size: 0.88rem;
 }
 
-/* ===========================
+/* ============================================================
+   Utility
+   ============================================================ */
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================================================
    Responsive
-=========================== */
+   ============================================================ */
+
 @media (max-width: 600px) {
-  .accordion-trigger {
-    padding: 0.9rem 1rem;
-    font-size: 0.97rem;
+  .guide-section {
+    padding: 1.25rem 1rem 2rem;
   }
 
-  .accordion-content {
-    padding: 1.1rem 1rem 1.4rem;
+  .section-header h2 {
+    font-size: 1.4rem;
   }
 
-  .recipe-grid {
-    grid-template-columns: 1fr;
+  .styled-select {
+    max-width: 100%;
   }
 
-  .method-cards {
-    grid-template-columns: 1fr;
+  .styled-select--sm {
+    max-width: 100%;
   }
 }
