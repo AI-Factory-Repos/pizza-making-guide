@@ -10,408 +10,344 @@
   <header class="site-header">
     <div class="container">
       <h1>🍕 Pizza Making Guide</h1>
-      <p class="tagline">Master the art of homemade pizza from dough to slice</p>
+      <p class="tagline">Everything you need to craft the perfect pizza from scratch</p>
     </div>
   </header>
 
+  <nav class="main-nav">
+    <div class="container">
+      <ul class="nav-list">
+        <li><a href="#sauce-section" class="nav-link">Sauces</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <main class="container">
-    <!-- Dough Section -->
-    <section id="dough-section" class="guide-section">
-      <div class="section-intro">
-        <h2>The Dough</h2>
-        <p>Great pizza starts with great dough. Expand each step below for detailed instructions and video demonstrations.</p>
+    <!-- ===== SAUCE PREPARATION SECTION ===== -->
+    <section id="sauce-section" class="guide-section">
+      <div class="section-header">
+        <h2>Sauce Preparation</h2>
+        <p class="section-intro">
+          A great pizza starts with a great sauce. Explore the three classic bases below,
+          learn when to cook your sauce versus keeping it fresh, and master the seasoning
+          and consistency techniques that separate good pizza from unforgettable pizza.
+        </p>
       </div>
 
-      <!-- 1. Ingredient Measurements -->
-      <div class="accordion" id="accordion-ingredients">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-ingredients">
-          <span class="accordion-icon">🌾</span>
-          <span class="accordion-title">Ingredient Measurements</span>
-          <span class="accordion-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="accordion-panel" id="panel-ingredients" role="region" aria-labelledby="accordion-ingredients" hidden>
-          <div class="accordion-content">
-            <p class="panel-intro">Accurate measurements are the foundation of consistent dough. Use a kitchen scale for best results.</p>
-
-            <div class="recipe-grid">
-              <div class="recipe-card">
-                <h4>Neapolitan (2 pizzas)</h4>
-                <table class="ingredient-table">
-                  <thead><tr><th>Ingredient</th><th>Weight</th><th>Baker's %</th></tr></thead>
-                  <tbody>
-                    <tr><td>00 Flour</td><td>300 g</td><td>100%</td></tr>
-                    <tr><td>Water (65°F / 18°C)</td><td>195 g</td><td>65%</td></tr>
-                    <tr><td>Fine Sea Salt</td><td>7.5 g</td><td>2.5%</td></tr>
-                    <tr><td>Active Dry Yeast</td><td>0.6 g</td><td>0.2%</td></tr>
-                    <tr><td>Extra Virgin Olive Oil</td><td>9 g</td><td>3%</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="recipe-card">
-                <h4>New York Style (2 pizzas)</h4>
-                <table class="ingredient-table">
-                  <thead><tr><th>Ingredient</th><th>Weight</th><th>Baker's %</th></tr></thead>
-                  <tbody>
-                    <tr><td>Bread Flour</td><td>320 g</td><td>100%</td></tr>
-                    <tr><td>Water (75°F / 24°C)</td><td>211 g</td><td>66%</td></tr>
-                    <tr><td>Fine Sea Salt</td><td>8 g</td><td>2.5%</td></tr>
-                    <tr><td>Active Dry Yeast</td><td>3.2 g</td><td>1%</td></tr>
-                    <tr><td>Olive Oil</td><td>16 g</td><td>5%</td></tr>
-                    <tr><td>Sugar</td><td>6.4 g</td><td>2%</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="tips-block">
-              <h4>📏 Pro Tips</h4>
-              <ul>
-                <li>Always weigh ingredients — volume measurements are inconsistent for baking.</li>
-                <li>Water temperature matters: cold water slows fermentation; warm water speeds it up.</li>
-                <li>Add salt <strong>after</strong> the flour and water are combined — direct contact with yeast can inhibit activity.</li>
-                <li>00 flour creates a softer, more extensible dough ideal for Neapolitan-style; bread flour gives NY-style its chew.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <!-- Sauce Type Selector -->
+      <div class="dropdown-group">
+        <label for="sauce-type-select" class="dropdown-label">Choose a Sauce Type</label>
+        <select id="sauce-type-select" class="styled-select">
+          <option value="">-- Select a Sauce --</option>
+          <option value="marinara">Basic Marinara</option>
+          <option value="white">White Sauce (Béchamel / Alfredo)</option>
+          <option value="pesto">Pesto Variations</option>
+        </select>
       </div>
 
-      <!-- 2. Mixing Techniques -->
-      <div class="accordion" id="accordion-mixing">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-mixing">
-          <span class="accordion-icon">🥣</span>
-          <span class="accordion-title">Mixing Techniques</span>
-          <span class="accordion-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="accordion-panel" id="panel-mixing" role="region" aria-labelledby="accordion-mixing" hidden>
-          <div class="accordion-content">
-            <p class="panel-intro">How you mix the dough affects gluten development, texture, and final structure.</p>
+      <!-- Sauce Detail Panels -->
+      <div id="sauce-panels">
 
-            <div class="steps-list">
-              <div class="step">
-                <span class="step-number">1</span>
-                <div class="step-body">
-                  <h4>Autolyse (Optional but Recommended)</h4>
-                  <p>Combine flour and water — hold back the salt and yeast. Mix until just combined (no dry flour). Rest <strong>20–30 minutes</strong>. This hydrates the flour and kick-starts gluten development with minimal effort, making kneading easier.</p>
-                </div>
+        <!-- MARINARA -->
+        <div id="panel-marinara" class="sauce-panel hidden">
+          <div class="panel-inner">
+            <h3>🍅 Basic Marinara</h3>
+            <p class="panel-description">
+              The cornerstone of Neapolitan pizza. A true marinara is surprisingly simple —
+              its quality depends entirely on excellent tomatoes and restraint with seasoning.
+            </p>
+
+            <div class="info-grid">
+              <div class="info-card">
+                <h4>Core Ingredients</h4>
+                <ul>
+                  <li>San Marzano or high-quality crushed tomatoes (400 g / 14 oz)</li>
+                  <li>Extra-virgin olive oil (2 tbsp)</li>
+                  <li>Garlic (2–3 cloves, thinly sliced)</li>
+                  <li>Fresh basil leaves (a generous handful)</li>
+                  <li>Fine sea salt (to taste)</li>
+                  <li>Optional: pinch of red pepper flakes, dried oregano</li>
+                </ul>
               </div>
-              <div class="step">
-                <span class="step-number">2</span>
-                <div class="step-body">
-                  <h4>Add Yeast</h4>
-                  <p>Dissolve yeast in a small amount of the recipe water (lukewarm, 100–110°F / 38–43°C) for active dry yeast. Add to the dough and mix until evenly incorporated.</p>
-                </div>
-              </div>
-              <div class="step">
-                <span class="step-number">3</span>
-                <div class="step-body">
-                  <h4>Add Salt &amp; Oil</h4>
-                  <p>Sprinkle salt over the dough. Add olive oil if using. Incorporate by folding and pressing — the dough will feel slippery at first, then come back together.</p>
-                </div>
-              </div>
-              <div class="step">
-                <span class="step-number">4</span>
-                <div class="step-body">
-                  <h4>Mix to Shaggy Dough</h4>
-                  <p>Mix until no dry bits remain and a rough, shaggy ball forms. At this stage the dough does not need to be smooth — that comes from kneading.</p>
-                </div>
+
+              <div class="info-card">
+                <h4>Step-by-Step Method</h4>
+                <ol>
+                  <li>Gently warm olive oil in a saucepan over medium-low heat.</li>
+                  <li>Add garlic slices; sauté 1–2 min until fragrant — do not brown.</li>
+                  <li>Add crushed tomatoes; stir to combine.</li>
+                  <li>Simmer uncovered on low heat for 20–25 min, stirring occasionally.</li>
+                  <li>Remove from heat, tear in fresh basil, and season with salt.</li>
+                  <li>For a smoother texture, blend briefly with an immersion blender.</li>
+                </ol>
               </div>
             </div>
 
-            <div class="method-cards">
-              <div class="method-card">
-                <h4>By Hand</h4>
-                <p>Use a bowl scraper and bench scraper to bring the dough together. Fold the edges into the center and press down, rotating the bowl as you go.</p>
+            <!-- Sub-dropdown: cooking vs fresh -->
+            <div class="sub-dropdown-group">
+              <label for="marinara-method-select" class="dropdown-label">Method Preference</label>
+              <select id="marinara-method-select" class="styled-select styled-select--sm">
+                <option value="">-- Cooked or Fresh? --</option>
+                <option value="cooked">Cooked Marinara</option>
+                <option value="fresh">Fresh / No-Cook Marinara</option>
+              </select>
+            </div>
+
+            <div id="marinara-method-detail" class="method-detail hidden"></div>
+
+            <!-- Seasoning & Consistency Tips -->
+            <div class="tips-row">
+              <div class="tip-block">
+                <h4>🧂 Seasoning Techniques</h4>
+                <ul>
+                  <li><strong>Salt in stages:</strong> season lightly at the start and again at the end after tasting.</li>
+                  <li><strong>Acidity balance:</strong> if the sauce tastes too acidic, add a small pinch of sugar or a splash of olive oil.</li>
+                  <li><strong>Umami boost:</strong> a tiny amount of anchovy paste (½ tsp) dissolved during cooking deepens savory notes.</li>
+                  <li><strong>Herb timing:</strong> dried herbs (oregano) go in early; fresh basil goes in off the heat to preserve brightness.</li>
+                </ul>
               </div>
-              <div class="method-card">
-                <h4>Stand Mixer</h4>
-                <p>Use the dough hook. Mix on low (speed 2) for 2 minutes to combine, then medium (speed 4) for 6–8 minutes until the dough clears the bowl sides.</p>
-              </div>
-              <div class="method-card">
-                <h4>Food Processor</h4>
-                <p>Pulse dry ingredients, then add liquid with the machine running. Process 30–40 seconds until a smooth ball forms. Dough will be warm — refrigerate before proofing.</p>
+              <div class="tip-block">
+                <h4>📏 Consistency Tips</h4>
+                <ul>
+                  <li><strong>Too thin:</strong> simmer uncovered longer to evaporate excess moisture.</li>
+                  <li><strong>Too thick:</strong> add a splash of water or tomato juice and stir over low heat.</li>
+                  <li><strong>Ideal spread consistency:</strong> the sauce should coat the back of a spoon but still flow slowly.</li>
+                  <li><strong>Drain canned tomatoes</strong> slightly if they are very watery before cooking.</li>
+                </ul>
               </div>
             </div>
 
-            <div class="video-embed">
-              <h4>🎬 Watch: Mixing Pizza Dough by Hand</h4>
-              <div class="video-wrapper">
-                <iframe
-                  src="https://www.youtube.com/embed/l7O7TaFkBQk"
-                  title="Mixing Pizza Dough by Hand"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  loading="lazy"
-                ></iframe>
+            <!-- Videos -->
+            <div class="video-section">
+              <h4>📺 Video Guides</h4>
+              <div class="video-grid">
+                <div class="video-card">
+                  <div class="video-wrapper">
+                    <iframe
+                      src="https://www.youtube.com/embed/kKNPpMTygZI"
+                      title="Classic Marinara Sauce Technique"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <p class="video-caption">Classic Marinara — Technique Walkthrough</p>
+                </div>
+                <div class="video-card">
+                  <div class="video-wrapper">
+                    <iframe
+                      src="https://www.youtube.com/embed/R3eMTiRPRE4"
+                      title="Taste Testing Marinara Sauces"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <p class="video-caption">Taste Testing — Finding the Best Marinara</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 3. Kneading Methods -->
-      <div class="accordion" id="accordion-kneading">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-kneading">
-          <span class="accordion-icon">👐</span>
-          <span class="accordion-title">Kneading Methods</span>
-          <span class="accordion-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="accordion-panel" id="panel-kneading" role="region" aria-labelledby="accordion-kneading" hidden>
-          <div class="accordion-content">
-            <p class="panel-intro">Kneading develops gluten, creating the elastic network that traps CO₂ bubbles and gives pizza its signature chew and structure.</p>
+        <!-- WHITE SAUCE -->
+        <div id="panel-white" class="sauce-panel hidden">
+          <div class="panel-inner">
+            <h3>🥛 White Sauce (Béchamel / Alfredo)</h3>
+            <p class="panel-description">
+              Creamy white sauces offer a rich, indulgent base perfect for white pizzas,
+              chicken toppings, or vegetables. Choose between a classic béchamel or a simpler
+              Alfredo-style approach.
+            </p>
 
-            <div class="steps-list">
-              <div class="step">
-                <span class="step-number">1</span>
-                <div class="step-body">
-                  <h4>Traditional Push-and-Fold</h4>
-                  <p>Push the dough away with the heel of your palm, fold it back toward you, rotate 90°, and repeat. Work for <strong>8–10 minutes</strong> until smooth and elastic. The dough should spring back slowly when poked.</p>
+            <div class="info-grid">
+              <div class="info-card">
+                <h4>Béchamel Ingredients</h4>
+                <ul>
+                  <li>Unsalted butter (2 tbsp / 30 g)</li>
+                  <li>All-purpose flour (2 tbsp / 20 g)</li>
+                  <li>Whole milk (1 cup / 240 ml), warm</li>
+                  <li>Salt, white pepper, and freshly grated nutmeg</li>
+                  <li>Optional: grated Parmesan (30 g) for extra richness</li>
+                </ul>
+              </div>
+              <div class="info-card">
+                <h4>Alfredo-Style Ingredients</h4>
+                <ul>
+                  <li>Heavy cream (½ cup / 120 ml)</li>
+                  <li>Unsalted butter (2 tbsp)</li>
+                  <li>Garlic (1 clove, minced)</li>
+                  <li>Parmesan, finely grated (50 g)</li>
+                  <li>Salt and white pepper to taste</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Sub-dropdown: style -->
+            <div class="sub-dropdown-group">
+              <label for="white-style-select" class="dropdown-label">White Sauce Style</label>
+              <select id="white-style-select" class="styled-select styled-select--sm">
+                <option value="">-- Select Style --</option>
+                <option value="bechamel">Béchamel (Roux-based)</option>
+                <option value="alfredo">Alfredo-Style (Cream-based)</option>
+              </select>
+            </div>
+
+            <div id="white-style-detail" class="method-detail hidden"></div>
+
+            <div class="tips-row">
+              <div class="tip-block">
+                <h4>🧂 Seasoning Techniques</h4>
+                <ul>
+                  <li><strong>Nutmeg:</strong> a tiny pinch (⅛ tsp) is the classic finishing touch for béchamel — don't skip it.</li>
+                  <li><strong>White pepper</strong> instead of black keeps the sauce visually clean and adds subtle heat.</li>
+                  <li><strong>Garlic powder</strong> (¼ tsp) stirred in off the heat adds aroma without bitterness.</li>
+                  <li><strong>Cheese integration:</strong> add cheese after removing from heat to prevent graininess.</li>
+                </ul>
+              </div>
+              <div class="tip-block">
+                <h4>📏 Consistency Tips</h4>
+                <ul>
+                  <li><strong>Roux ratio:</strong> equal weights of butter and flour ensure a smooth base — whisk constantly while cooking the roux for 1 min.</li>
+                  <li><strong>Add milk gradually</strong> in three additions, whisking between each to prevent lumps.</li>
+                  <li><strong>Too thick:</strong> whisk in warm milk a tablespoon at a time.</li>
+                  <li><strong>Too thin:</strong> return to low heat and stir until desired thickness; avoid high heat which can scorch.</li>
+                  <li><strong>Pizza application:</strong> white sauce should be slightly thicker than marinara to prevent a soggy crust.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="video-section">
+              <h4>📺 Video Guides</h4>
+              <div class="video-grid">
+                <div class="video-card">
+                  <div class="video-wrapper">
+                    <iframe
+                      src="https://www.youtube.com/embed/K3PN8RQXFTU"
+                      title="Perfect Béchamel Sauce Technique"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <p class="video-caption">Perfect Béchamel — Step-by-Step Technique</p>
                 </div>
-              </div>
-              <div class="step">
-                <span class="step-number">2</span>
-                <div class="step-body">
-                  <h4>Slap &amp; Fold (Rubaud Method)</h4>
-                  <p>Pick up the dough, slap it against the bench, fold the top third down and the bottom third up (like a letter). Rotate 90° and repeat. This is excellent for high-hydration doughs (65%+). Work for <strong>5–7 minutes</strong>.</p>
+                <div class="video-card">
+                  <div class="video-wrapper">
+                    <iframe
+                      src="https://www.youtube.com/embed/ZAK0tMqkQjQ"
+                      title="White Pizza Sauce Taste Test"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <p class="video-caption">White Sauce Taste Test — Béchamel vs Alfredo</p>
                 </div>
-              </div>
-              <div class="step">
-                <span class="step-number">3</span>
-                <div class="step-body">
-                  <h4>Stretch &amp; Fold (No-Knead)</h4>
-                  <p>Leave the dough in the bowl. Every 30 minutes, wet your hand, grab one edge, stretch it up as high as possible, then fold it over the top. Rotate the bowl 90° and repeat 4 times per set. Do <strong>4–6 sets</strong> over 2 hours.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="tips-block">
-              <h4>⚠️ Kneading Checklist</h4>
-              <ul>
-                <li>Avoid adding extra flour — a sticky dough is normal. Use a light mist of water or a scraper instead.</li>
-                <li>Work on an unfloured surface for push-and-fold to maintain friction.</li>
-                <li>The dough is ready when it passes the <strong>windowpane test</strong> (see video below).</li>
-                <li>Over-kneaded dough is tight and tears rather than stretches — if the dough tears frequently, rest it 10 minutes.</li>
-              </ul>
-            </div>
-
-            <div class="video-embed">
-              <h4>🎬 Watch: Proper Kneading Technique</h4>
-              <div class="video-wrapper">
-                <iframe
-                  src="https://www.youtube.com/embed/2zAoTHqMaqw"
-                  title="How to Knead Pizza Dough"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  loading="lazy"
-                ></iframe>
-              </div>
-            </div>
-
-            <div class="video-embed">
-              <h4>🎬 Watch: The Windowpane Test</h4>
-              <div class="video-wrapper">
-                <iframe
-                  src="https://www.youtube.com/embed/G2dVz6lf4_I"
-                  title="Windowpane Test for Pizza Dough"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  loading="lazy"
-                ></iframe>
-              </div>
-              <p class="video-caption">Stretch a small piece of dough between your fingers — if it forms a thin, translucent membrane without tearing, your gluten is fully developed.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Proofing Times -->
-      <div class="accordion" id="accordion-proofing">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-proofing">
-          <span class="accordion-icon">⏱️</span>
-          <span class="accordion-title">Proofing Times</span>
-          <span class="accordion-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="accordion-panel" id="panel-proofing" role="region" aria-labelledby="accordion-proofing" hidden>
-          <div class="accordion-content">
-            <p class="panel-intro">Fermentation is where flavour develops. Longer, cooler proofs produce more complex, tangy flavour. Shorter, warmer proofs are more neutral but still delicious.</p>
-
-            <div class="proof-table-wrapper">
-              <table class="proof-table">
-                <thead>
-                  <tr>
-                    <th>Method</th>
-                    <th>Temperature</th>
-                    <th>Bulk Ferment</th>
-                    <th>Ball Proof</th>
-                    <th>Flavour Profile</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Same-day</strong></td>
-                    <td>72–75°F (22–24°C)</td>
-                    <td>1–2 hours</td>
-                    <td>1–2 hours</td>
-                    <td>Mild, yeasty</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Overnight</strong></td>
-                    <td>38–40°F (3–4°C)</td>
-                    <td>8–24 hours</td>
-                    <td>2 hours (room temp)</td>
-                    <td>Developed, slightly tangy</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Cold 48 hr</strong></td>
-                    <td>38–40°F (3–4°C)</td>
-                    <td>24–48 hours</td>
-                    <td>2 hours (room temp)</td>
-                    <td>Complex, nutty, tangy</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Cold 72 hr</strong></td>
-                    <td>38–40°F (3–4°C)</td>
-                    <td>48–72 hours</td>
-                    <td>2–3 hours (room temp)</td>
-                    <td>Deep, sourdough-like</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="steps-list">
-              <div class="step">
-                <span class="step-number">1</span>
-                <div class="step-body">
-                  <h4>Bulk Fermentation</h4>
-                  <p>After kneading, shape the dough into a smooth ball. Place in a lightly oiled bowl, cover with plastic wrap or a damp towel. The dough should roughly double in size. <em>Look for volume, not just time.</em></p>
-                </div>
-              </div>
-              <div class="step">
-                <span class="step-number">2</span>
-                <div class="step-body">
-                  <h4>Divide &amp; Ball</h4>
-                  <p>Turn the dough onto an unfloured surface. Divide into equal portions (typically 250–300 g each for a 12" pizza). Shape each portion into a tight ball by folding the edges under and rolling on the surface to create surface tension.</p>
-                </div>
-              </div>
-              <div class="step">
-                <span class="step-number">3</span>
-                <div class="step-body">
-                  <h4>Second Proof (Ball Proof)</h4>
-                  <p>Place dough balls in a lightly oiled container or tray, spaced apart. Cover tightly. Proof at room temperature for 1–2 hours, or refrigerate for up to 72 hours. Remove from fridge <strong>at least 2 hours before baking</strong> to come to room temperature.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="tips-block">
-              <h4>✅ How to Tell if Dough is Properly Proofed</h4>
-              <ul>
-                <li><strong>Poke test:</strong> Press a floured finger ½" into the dough. If it springs back slowly and partially, it's ready. If it springs back immediately, it needs more time. If it doesn't spring back at all, it's over-proofed.</li>
-                <li>The dough should feel airy, pillowy, and slightly jiggly when the container is shaken.</li>
-                <li>Over-proofed dough is still usable — bake it promptly and handle it gently.</li>
-              </ul>
-            </div>
-
-            <div class="video-embed">
-              <h4>🎬 Watch: Shaping Dough Balls &amp; Proofing</h4>
-              <div class="video-wrapper">
-                <iframe
-                  src="https://www.youtube.com/embed/v5t5MEZt6LM"
-                  title="How to Shape Pizza Dough Balls"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  loading="lazy"
-                ></iframe>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 5. Troubleshooting -->
-      <div class="accordion" id="accordion-troubleshooting">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-troubleshooting">
-          <span class="accordion-icon">🔧</span>
-          <span class="accordion-title">Troubleshooting</span>
-          <span class="accordion-chevron" aria-hidden="true"></span>
-        </button>
-        <div class="accordion-panel" id="panel-troubleshooting" role="region" aria-labelledby="accordion-troubleshooting" hidden>
-          <div class="accordion-content">
-            <p class="panel-intro">Even experienced bakers run into issues. Here are the most common dough problems and how to fix them.</p>
+        <!-- PESTO -->
+        <div id="panel-pesto" class="sauce-panel hidden">
+          <div class="panel-inner">
+            <h3>🌿 Pesto Variations</h3>
+            <p class="panel-description">
+              Pesto brings vibrant, herby freshness to pizza. The classic Genovese basil pesto
+              is just the beginning — explore sun-dried tomato and arugula variations for
+              exciting flavour profiles.
+            </p>
 
-            <div class="trouble-list">
-              <details class="trouble-item">
-                <summary>Dough is too sticky and won't come together</summary>
-                <div class="trouble-body">
-                  <p><strong>Cause:</strong> Excess hydration, undermixing, or warm environment.</p>
-                  <p><strong>Fix:</strong> Use a bench scraper and wet hands rather than adding more flour. Work the dough through stretch-and-fold sets. Refrigerate for 20 minutes to firm it up, then continue.</p>
-                </div>
-              </details>
-              <details class="trouble-item">
-                <summary>Dough tears when stretched</summary>
-                <div class="trouble-body">
-                  <p><strong>Cause:</strong> Underdeveloped or over-stressed gluten (tight dough).</p>
-                  <p><strong>Fix:</strong> Cover and rest the dough for 15–20 minutes to allow the gluten to relax, then try again. Do not force it.</p>
-                </div>
-              </details>
-              <details class="trouble-item">
-                <summary>Dough isn't rising</summary>
-                <div class="trouble-body">
-                  <p><strong>Cause:</strong> Dead or inactive yeast, too-cold environment, or salt killed the yeast.</p>
-                  <p><strong>Fix:</strong> Test yeast by dissolving in 110°F water with a pinch of sugar — it should foam in 10 minutes. Place dough in a warm spot (75–80°F) or inside an oven with just the light on.</p>
-                </div>
-              </details>
-              <details class="trouble-item">
-                <summary>Dough is over-proofed (too puffy, collapses)</summary>
-                <div class="trouble-body">
-                  <p><strong>Cause:</strong> Left to ferment too long or in too-warm an environment.</p>
-                  <p><strong>Fix:</strong> Gently degas the dough by pressing it down, reshape into balls, and bake immediately. The flavour may be more sour but the pizza will still be edible. Reduce yeast or proof time next time.</p>
-                </div>
-              </details>
-              <details class="trouble-item">
-                <summary>Crust is too dense / no air bubbles</summary>
-                <div class="trouble-body">
-                  <p><strong>Cause:</strong> Under-proofed dough or insufficient oven temperature.</p>
-                  <p><strong>Fix:</strong> Allow more bulk fermentation time. Bake at the highest oven temperature possible (500°F+). Preheat your baking stone or steel for at least 45–60 minutes.</p>
-                </div>
-              </details>
-              <details class="trouble-item">
-                <summary>Crust is too tough / chewy</summary>
-                <div class="trouble-body">
-                  <p><strong>Cause:</strong> Over-kneaded dough, too much bread flour, or insufficient water.</p>
-                  <p><strong>Fix:</strong> Increase hydration by 2–3%. Try blending 50% bread flour + 50% all-purpose flour. Avoid over-working the dough after balling.</p>
-                </div>
-              </details>
-              <details class="trouble-item">
-                <summary>Dough springs back and won't stretch</summary>
-                <div class="trouble-body">
-                  <p><strong>Cause:</strong> Dough is too cold or gluten is too tense.</p>
-                  <p><strong>Fix:</strong> Let the dough warm up to room temperature (at least 60–90 minutes out of the fridge). Between attempts, cover and rest 10 minutes. Work from the center outward, never pulling from the edges.</p>
-                </div>
-              </details>
+            <!-- Sub-dropdown: pesto variant -->
+            <div class="sub-dropdown-group">
+              <label for="pesto-variant-select" class="dropdown-label">Choose a Pesto Variation</label>
+              <select id="pesto-variant-select" class="styled-select styled-select--sm">
+                <option value="">-- Select Variation --</option>
+                <option value="basil">Classic Basil Pesto (Genovese)</option>
+                <option value="sundried">Sun-Dried Tomato Pesto</option>
+                <option value="arugula">Arugula &amp; Walnut Pesto</option>
+              </select>
             </div>
 
-            <div class="video-embed">
-              <h4>🎬 Watch: Common Pizza Dough Mistakes &amp; How to Fix Them</h4>
-              <div class="video-wrapper">
-                <iframe
-                  src="https://www.youtube.com/embed/oEaXaJnOIoQ"
-                  title="Pizza Dough Troubleshooting Tips"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  loading="lazy"
-                ></iframe>
+            <div id="pesto-variant-detail" class="method-detail hidden"></div>
+
+            <div class="info-grid" style="margin-top:1.5rem;">
+              <div class="info-card">
+                <h4>General Pesto Tips</h4>
+                <ul>
+                  <li>Always toast nuts lightly before blending — it deepens flavour significantly.</li>
+                  <li>Blanch basil leaves for 5 seconds then shock in ice water to keep the sauce vivid green.</li>
+                  <li>Use a food processor for speed or a mortar and pestle for traditional texture.</li>
+                  <li>Add olive oil gradually while blending for a smooth, emulsified result.</li>
+                  <li>Pesto can brown on pizza if baked at very high heat — apply after baking or in the last 2 minutes.</li>
+                </ul>
+              </div>
+              <div class="info-card">
+                <h4>Cooking vs Fresh — Pesto</h4>
+                <ul>
+                  <li><strong>Fresh (no-cook):</strong> Pesto is almost always used raw, applied after the pizza exits the oven to preserve its colour and fresh taste.</li>
+                  <li><strong>Lightly baked:</strong> dollop pesto on halfway through baking for a slightly roasted, mellowed flavour.</li>
+                  <li><strong>Never fully bake from the start</strong> — the heat destroys the fresh herb notes and turns the sauce brown.</li>
+                  <li><strong>Storage:</strong> cover pesto with a thin layer of olive oil in an airtight container to prevent oxidation; keeps 5 days refrigerated.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="tips-row">
+              <div class="tip-block">
+                <h4>🧂 Seasoning Techniques</h4>
+                <ul>
+                  <li><strong>Salt balance:</strong> Parmesan and pecorino are already salty — taste before adding any extra salt.</li>
+                  <li><strong>Acidity:</strong> a squeeze of fresh lemon juice brightens all pesto varieties.</li>
+                  <li><strong>Garlic intensity:</strong> use raw garlic for punch or roasted garlic for a sweeter, milder profile.</li>
+                  <li><strong>Cheese ratio:</strong> a 2:1 Parmesan to Pecorino blend gives the best balance of sharpness and creaminess.</li>
+                </ul>
+              </div>
+              <div class="tip-block">
+                <h4>📏 Consistency Tips</h4>
+                <ul>
+                  <li><strong>Too thick:</strong> blend in extra olive oil or 1–2 tbsp of pasta water (or plain water) a little at a time.</li>
+                  <li><strong>Too thin:</strong> add more nuts or cheese and re-blend.</li>
+                  <li><strong>Pizza spread thickness:</strong> pesto should be spread thinner than tomato sauce — it is rich and concentrated.</li>
+                  <li><strong>Texture preference:</strong> pulse less for a chunky, rustic pesto; blend longer for a silky smooth result.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="video-section">
+              <h4>📺 Video Guides</h4>
+              <div class="video-grid">
+                <div class="video-card">
+                  <div class="video-wrapper">
+                    <iframe
+                      src="https://www.youtube.com/embed/wNMlE2_YAe0"
+                      title="Classic Basil Pesto Technique"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <p class="video-caption">Classic Basil Pesto — Traditional Technique</p>
+                </div>
+                <div class="video-card">
+                  <div class="video-wrapper">
+                    <iframe
+                      src="https://www.youtube.com/embed/iqB66KpPM6Y"
+                      title="Pesto Variations Taste Test"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <p class="video-caption">Pesto Variations — Taste Testing &amp; Comparison</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
+      </div><!-- /sauce-panels -->
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2024 Pizza Making Guide. All rights reserved.</p>
+      <p>&copy; 2024 Pizza Making Guide. Crafted with 🍕</p>
     </div>
   </footer>
 
