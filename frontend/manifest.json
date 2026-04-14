@@ -1,0 +1,16 @@
+{
+  "name": "Pizza Making Guide",
+  "short_name": "PizzaGuide",
+  "description": "A complete reference guide to making pizza at home.",
+  "start_url": "/frontend/index.html",
+  "display": "standalone",
+  "background_color": "#fafaf8",
+  "theme_color": "#c0392b",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
