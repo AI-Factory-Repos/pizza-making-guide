@@ -8,69 +8,189 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <h1 class="site-title">🍕 Pizza Making Guide</h1>
-      <p class="site-subtitle">Everything you need to craft the perfect pizza at home</p>
-    </div>
+    <h1>🍕 Pizza Making Guide</h1>
+    <p class="tagline">From dough to delicious — master every step.</p>
   </header>
 
   <main class="main-content">
-    <div class="container">
 
-      <!-- Equipment & Tools Section -->
-      <section id="equipment-tools" class="section">
-        <div class="section-header">
-          <h2 class="section-title">Equipment &amp; Tools</h2>
-          <p class="section-desc">The right tools make all the difference. Browse essential and optional equipment to level up your pizza game.</p>
+    <!-- ===== TIMING SECTION ===== -->
+    <section class="section" id="timing-section">
+      <h2 class="section-title">Baking Timing Guidelines</h2>
+      <p class="section-intro">Choose your pizza style to see the recommended baking window and set the interactive timer.</p>
+
+      <div class="style-cards">
+        <!-- Thin Crust -->
+        <div class="style-card" data-style="thin" data-min="8" data-max="12">
+          <div class="style-card__icon">🫓</div>
+          <h3 class="style-card__title">Thin Crust</h3>
+          <p class="style-card__range">8 – 12 minutes</p>
+          <ul class="style-card__tips">
+            <li>High heat (500 °F / 260 °C)</li>
+            <li>Pre-heat baking stone/steel</li>
+            <li>Watch edges closely after 7 min</li>
+          </ul>
+          <button class="btn btn--primary select-style-btn" data-style="thin" data-min="8" data-max="12" data-label="Thin Crust">
+            Use Thin Crust Timer
+          </button>
         </div>
 
-        <!-- Search & Filter Controls -->
-        <div class="controls" role="search" aria-label="Filter equipment">
-          <div class="search-wrapper">
-            <label for="equipment-search" class="sr-only">Search equipment</label>
-            <input
-              type="search"
-              id="equipment-search"
-              class="search-input"
-              placeholder="Search equipment…"
-              aria-controls="equipment-grid"
-              autocomplete="off"
-            />
-            <span class="search-icon" aria-hidden="true">🔍</span>
+        <!-- Thick Crust -->
+        <div class="style-card" data-style="thick" data-min="12" data-max="18">
+          <div class="style-card__icon">🍞</div>
+          <h3 class="style-card__title">Thick Crust</h3>
+          <p class="style-card__range">12 – 18 minutes</p>
+          <ul class="style-card__tips">
+            <li>Medium-high heat (450 °F / 230 °C)</li>
+            <li>Pan pizza works great</li>
+            <li>Check bottom color before pulling</li>
+          </ul>
+          <button class="btn btn--primary select-style-btn" data-style="thick" data-min="12" data-max="18" data-label="Thick Crust">
+            Use Thick Crust Timer
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Timer -->
+      <div class="timer-widget" id="timer-widget" aria-live="polite">
+        <div class="timer-widget__header">
+          <h3 class="timer-widget__title" id="timer-style-label">Select a style above to start</h3>
+        </div>
+
+        <div class="timer-range-selector" id="timer-range-selector" hidden>
+          <label for="timer-duration">Set timer duration (minutes):</label>
+          <div class="timer-range-row">
+            <span class="timer-range-bound" id="timer-min-label">8</span>
+            <input type="range" id="timer-duration" class="timer-slider" min="8" max="12" value="10" step="1" />
+            <span class="timer-range-bound" id="timer-max-label">12</span>
           </div>
+          <p class="timer-selected-value">Selected: <strong id="timer-selected-minutes">10</strong> min</p>
+        </div>
 
-          <div class="filter-tabs" role="tablist" aria-label="Equipment categories">
-            <button class="filter-tab active" role="tab" aria-selected="true" data-category="all">All</button>
-            <button class="filter-tab" role="tab" aria-selected="false" data-category="essential">Essential</button>
-            <button class="filter-tab" role="tab" aria-selected="false" data-category="baking">Baking</button>
-            <button class="filter-tab" role="tab" aria-selected="false" data-category="prep">Prep</button>
-            <button class="filter-tab" role="tab" aria-selected="false" data-category="optional">Optional</button>
+        <div class="timer-display" id="timer-display" hidden>
+          <div class="timer-clock" id="timer-clock" aria-label="Countdown timer">10:00</div>
+          <div class="timer-progress-bar">
+            <div class="timer-progress-fill" id="timer-progress-fill"></div>
           </div>
         </div>
 
-        <!-- Results count -->
-        <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true"></p>
-
-        <!-- Equipment Grid -->
-        <div class="equipment-grid" id="equipment-grid" role="list">
-          <!-- Cards rendered by JS -->
+        <div class="timer-controls" id="timer-controls" hidden>
+          <button class="btn btn--success" id="timer-start-btn">▶ Start</button>
+          <button class="btn btn--warning" id="timer-pause-btn" disabled>⏸ Pause</button>
+          <button class="btn btn--danger" id="timer-reset-btn">↺ Reset</button>
         </div>
 
-        <!-- Empty state -->
-        <div class="empty-state hidden" id="empty-state" aria-live="polite">
-          <span class="empty-icon" aria-hidden="true">🔧</span>
-          <p>No equipment found. Try a different search or category.</p>
-        </div>
-      </section>
+        <p class="timer-status" id="timer-status"></p>
+      </div>
+    </section>
 
-    </div>
+    <!-- ===== DONENESS SECTION ===== -->
+    <section class="section" id="doneness-section">
+      <h2 class="section-title">Visual Doneness Indicators</h2>
+      <p class="section-intro">Use these visual cues to know exactly when your pizza is perfectly baked.</p>
+
+      <div class="doneness-grid">
+
+        <!-- Crust Color -->
+        <div class="doneness-card">
+          <div class="doneness-photo doneness-photo--crust" role="img" aria-label="Crust color example">
+            <div class="photo-sim photo-sim--crust">
+              <div class="crust-ring">
+                <span class="crust-label">Golden Brown Edge</span>
+              </div>
+            </div>
+            <span class="doneness-badge">Crust Color</span>
+          </div>
+          <div class="doneness-info">
+            <h3>🟤 Crust Color</h3>
+            <ul>
+              <li><span class="indicator underdone">Pale / White</span> — needs more time</li>
+              <li><span class="indicator perfect">Golden Brown</span> — perfectly done</li>
+              <li><span class="indicator overdone">Dark Brown / Black</span> — overdone</li>
+            </ul>
+            <p class="doneness-tip">The bottom of the crust should be an even golden brown when lifted with a spatula.</p>
+          </div>
+        </div>
+
+        <!-- Cheese Bubbling -->
+        <div class="doneness-card">
+          <div class="doneness-photo doneness-photo--cheese" role="img" aria-label="Cheese bubbling example">
+            <div class="photo-sim photo-sim--cheese">
+              <div class="cheese-bubbles">
+                <div class="bubble b1"></div>
+                <div class="bubble b2"></div>
+                <div class="bubble b3"></div>
+                <div class="bubble b4"></div>
+              </div>
+              <span class="cheese-label">Bubbling &amp; Melted</span>
+            </div>
+            <span class="doneness-badge">Cheese</span>
+          </div>
+          <div class="doneness-info">
+            <h3>🧀 Cheese Bubbling</h3>
+            <ul>
+              <li><span class="indicator underdone">Solid / Unmelted</span> — not ready</li>
+              <li><span class="indicator perfect">Bubbling with light brown spots</span> — perfect</li>
+              <li><span class="indicator overdone">Fully charred / separated</span> — too long</li>
+            </ul>
+            <p class="doneness-tip">Look for active bubbling across most of the surface with some golden-brown spots on the peaks.</p>
+          </div>
+        </div>
+
+        <!-- Edge Browning -->
+        <div class="doneness-card">
+          <div class="doneness-photo doneness-photo--edge" role="img" aria-label="Edge browning example">
+            <div class="photo-sim photo-sim--edge">
+              <div class="edge-slice">
+                <div class="slice-body"></div>
+                <div class="slice-edge"></div>
+              </div>
+              <span class="edge-label">Browned Edges</span>
+            </div>
+            <span class="doneness-badge">Edge Browning</span>
+          </div>
+          <div class="doneness-info">
+            <h3>🔥 Edge Browning</h3>
+            <ul>
+              <li><span class="indicator underdone">Doughy &amp; pale</span> — needs more time</li>
+              <li><span class="indicator perfect">Puffed &amp; golden with char spots</span> — perfect</li>
+              <li><span class="indicator overdone">Completely charred</span> — overdone</li>
+            </ul>
+            <p class="doneness-tip">Edges should puff up and show leopard-spot char marks for authentic Neapolitan style.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Doneness Scale -->
+      <div class="doneness-scale">
+        <h3 class="doneness-scale__title">Overall Doneness Scale</h3>
+        <div class="scale-bar">
+          <div class="scale-segment scale-underdone">
+            <span>Underdone</span>
+          </div>
+          <div class="scale-segment scale-perfect">
+            <span>✓ Perfect</span>
+          </div>
+          <div class="scale-segment scale-overdone">
+            <span>Overdone</span>
+          </div>
+        </div>
+        <div class="scale-labels">
+          <span>Pale &amp; Soft</span>
+          <span>Golden &amp; Crisp</span>
+          <span>Dark &amp; Bitter</span>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2024 Pizza Making Guide. All rights reserved.</p>
-    </div>
+    <p>&copy; 2024 Pizza Making Guide</p>
   </footer>
+
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
   <script src="js/main.js"></script>
 </body>
