@@ -8,96 +8,133 @@
 </head>
 <body>
 
-  <!-- Progress bar -->
-  <div id="progress-bar" aria-hidden="true"></div>
+  <header class="site-header">
+    <h1>🍕 Pizza Making Guide</h1>
+    <p class="site-subtitle">Everything you need to make the perfect pizza at home</p>
 
-  <div class="layout">
-    <!-- Sidebar TOC -->
-    <aside id="toc-sidebar" aria-label="Table of contents">
-      <nav id="toc">
-        <h2 class="toc-title">Contents</h2>
-        <ol id="toc-list"></ol>
-      </nav>
-    </aside>
+    <div class="search-container">
+      <label for="site-search" class="sr-only">Search guide content</label>
+      <input
+        type="search"
+        id="site-search"
+        class="search-input"
+        placeholder="Search the guide…"
+        autocomplete="off"
+        aria-label="Search guide content"
+      />
+      <span class="search-icon" aria-hidden="true">🔍</span>
+    </div>
+  </header>
 
-    <!-- Main content -->
-    <main id="main-content">
-      <header class="guide-header">
-        <h1>🍕 The Complete Pizza Making Guide</h1>
-        <p class="subtitle">From dough to delicious — everything you need to know.</p>
-      </header>
-
-      <article>
-        <section id="ingredients" class="content-section">
-          <h2>Ingredients</h2>
-          <p>Great pizza starts with quality ingredients. For a classic Neapolitan pizza you will need:</p>
-          <ul>
-            <li>500 g tipo 00 flour (or bread flour)</li>
-            <li>325 ml lukewarm water</li>
-            <li>10 g fine sea salt</li>
-            <li>7 g active dry yeast (or 3 g instant yeast)</li>
-            <li>1 tsp sugar</li>
-            <li>2 tbsp extra-virgin olive oil</li>
-          </ul>
-          <p>For the sauce, use San Marzano tomatoes, fresh basil, garlic, and a pinch of salt. Keep toppings minimal so each flavour shines.</p>
-        </section>
-
-        <section id="dough" class="content-section">
-          <h2>Making the Dough</h2>
-          <p>Combine yeast, sugar, and warm water; let bloom for 5 minutes. Mix flour and salt in a large bowl, create a well, pour in the yeast mixture and olive oil, then stir until a shaggy dough forms.</p>
-          <p>Turn the dough out onto a lightly floured surface and knead for 8–10 minutes until smooth and elastic. Alternatively, use a stand mixer with a dough hook on medium speed for 6 minutes.</p>
-          <p>Shape into a ball, place in an oiled bowl, cover with plastic wrap, and let rise at room temperature for 1–2 hours until doubled.</p>
-        </section>
-
-        <section id="fermentation" class="content-section">
-          <h2>Fermentation</h2>
-          <p>Cold fermentation dramatically improves flavour and texture. After the initial rise, punch down the dough, divide into 2–4 balls (≈ 250 g each), place in individual oiled containers, cover, and refrigerate for 24–72 hours.</p>
-          <p>Remove dough 1–2 hours before baking so it can come to room temperature and relax, making shaping much easier.</p>
-        </section>
-
-        <section id="shaping" class="content-section">
-          <h2>Shaping the Pizza</h2>
-          <p>Flour your surface well. Press the dough ball flat with your fingers, working from the centre outward and leaving a 1 cm border for the crust. Stretch the dough over your knuckles, rotating gently, until you reach your desired size (28–30 cm is ideal).</p>
-          <p>Avoid using a rolling pin — it degases the dough and ruins the airy crust. If the dough springs back, let it rest for 5 minutes before continuing.</p>
-        </section>
-
-        <section id="sauce" class="content-section">
-          <h2>Preparing the Sauce</h2>
-          <p>Crush whole San Marzano tomatoes by hand into a bowl. Add 2 crushed garlic cloves, a handful of fresh basil, a pinch of salt, and a drizzle of olive oil. Do not cook the sauce — it will cook perfectly in the oven.</p>
-          <p>Spread a thin, even layer of sauce over the shaped dough, leaving the border clear. Less is more; a soggy pizza is a sad pizza.</p>
-        </section>
-
-        <section id="toppings" class="content-section">
-          <h2>Toppings</h2>
-          <p>Layer fresh mozzarella (torn, not sliced) over the sauce. Add any additional toppings sparingly — pepperoni, roasted vegetables, olives, or anchovies all work well. Finish with a drizzle of olive oil.</p>
-          <p>Always add fresh herbs like basil <em>after</em> baking to preserve their colour and aroma.</p>
-        </section>
-
-        <section id="baking" class="content-section">
-          <h2>Baking</h2>
-          <p>Preheat your oven to its maximum temperature (typically 250–290 °C / 480–550 °F) with a pizza stone or steel on the middle rack for at least 45–60 minutes. The stone must be screaming hot.</p>
-          <p>Transfer the topped pizza to a lightly floured pizza peel. Slide it onto the stone and bake for 7–10 minutes until the crust is golden-brown and the cheese is bubbling with charred spots.</p>
-        </section>
-
-        <section id="serving" class="content-section">
-          <h2>Serving</h2>
-          <p>Slide the pizza onto a wooden board and let it rest for 2 minutes — this keeps the base crisp. Add fresh basil, a crack of black pepper, and a final drizzle of extra-virgin olive oil before slicing.</p>
-          <p>Cut with a sharp pizza wheel or a large knife and serve immediately. Pizza waits for no one.</p>
-        </section>
-
-        <section id="tips" class="content-section">
-          <h2>Tips &amp; Troubleshooting</h2>
-          <ul>
-            <li><strong>Dough too sticky?</strong> Add flour 1 tbsp at a time — don't overdo it.</li>
-            <li><strong>Dough not rising?</strong> Check your yeast isn't expired; water should be 38–40 °C.</li>
-            <li><strong>Soggy centre?</strong> Use less sauce and make sure the oven is fully preheated.</li>
-            <li><strong>Burnt crust?</strong> Move the rack down or reduce temperature by 10 °C.</li>
-            <li><strong>No pizza stone?</strong> Use a heavy baking sheet preheated upside-down.</li>
-          </ul>
-        </section>
-      </article>
-    </main>
+  <div id="no-results" class="no-results" hidden>
+    <p>😕 No results found for "<span id="no-results-query"></span>". Try a different search term.</p>
   </div>
+
+  <main id="guide-content">
+
+    <section class="guide-section" data-section="dough">
+      <button class="section-toggle" aria-expanded="false" aria-controls="dough-body">
+        <span class="section-title">Making the Dough</span>
+        <span class="toggle-icon" aria-hidden="true">▶</span>
+      </button>
+      <div class="section-body" id="dough-body" hidden>
+        <div class="video-block">
+          <div class="video-placeholder" aria-label="Video: How to Make Pizza Dough">
+            <span class="play-icon" aria-hidden="true">▶</span>
+          </div>
+          <p class="video-description">Learn how to prepare the perfect pizza dough using flour, water, yeast, salt, and olive oil. This step-by-step video walks you through kneading, rising, and shaping your dough for a crispy, chewy crust.</p>
+        </div>
+        <div class="instructions">
+          <h3>Instructions</h3>
+          <ol>
+            <li>Combine 3 cups of all-purpose flour, 1 packet of active dry yeast, 1 tsp salt, and 1 tbsp olive oil in a large bowl.</li>
+            <li>Gradually add 1 cup of warm water and mix until a sticky dough forms.</li>
+            <li>Knead the dough on a floured surface for 8–10 minutes until smooth and elastic.</li>
+            <li>Place in an oiled bowl, cover with a damp cloth, and let rise for 1–2 hours until doubled in size.</li>
+            <li>Punch down the dough and shape it into your desired pizza base.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section" data-section="sauce">
+      <button class="section-toggle" aria-expanded="false" aria-controls="sauce-body">
+        <span class="section-title">Preparing the Sauce</span>
+        <span class="toggle-icon" aria-hidden="true">▶</span>
+      </button>
+      <div class="section-body" id="sauce-body" hidden>
+        <div class="video-block">
+          <div class="video-placeholder" aria-label="Video: Classic Tomato Pizza Sauce">
+            <span class="play-icon" aria-hidden="true">▶</span>
+          </div>
+          <p class="video-description">Discover the secret to a rich, flavourful tomato sauce using San Marzano tomatoes, garlic, basil, and oregano. This quick no-cook sauce brings authentic Italian taste to every slice.</p>
+        </div>
+        <div class="instructions">
+          <h3>Instructions</h3>
+          <ol>
+            <li>Crush one 400 g can of San Marzano tomatoes by hand or with a fork.</li>
+            <li>Mix in 2 cloves of minced garlic, 1 tsp dried oregano, and a handful of fresh basil leaves.</li>
+            <li>Season with salt and a pinch of sugar to balance the acidity.</li>
+            <li>Drizzle with olive oil and stir well. No cooking required — the oven does the work!</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section" data-section="toppings">
+      <button class="section-toggle" aria-expanded="false" aria-controls="toppings-body">
+        <span class="section-title">Choosing Your Toppings</span>
+        <span class="toggle-icon" aria-hidden="true">▶</span>
+      </button>
+      <div class="section-body" id="toppings-body" hidden>
+        <div class="video-block">
+          <div class="video-placeholder" aria-label="Video: Best Pizza Toppings Combinations">
+            <span class="play-icon" aria-hidden="true">▶</span>
+          </div>
+          <p class="video-description">Explore classic and creative topping combinations — from Margherita with fresh mozzarella and basil to BBQ chicken, roasted vegetables, and prosciutto. Learn how to balance flavours and avoid a soggy pizza.</p>
+        </div>
+        <div class="instructions">
+          <h3>Instructions</h3>
+          <ol>
+            <li>Spread the tomato sauce evenly over the stretched dough, leaving a 2 cm border for the crust.</li>
+            <li>Tear fresh mozzarella and scatter over the sauce.</li>
+            <li>Add your chosen toppings sparingly — less is more for even cooking.</li>
+            <li>Finish with a drizzle of olive oil and a sprinkle of sea salt.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section" data-section="baking">
+      <button class="section-toggle" aria-expanded="false" aria-controls="baking-body">
+        <span class="section-title">Baking the Pizza</span>
+        <span class="toggle-icon" aria-hidden="true">▶</span>
+      </button>
+      <div class="section-body" id="baking-body" hidden>
+        <div class="video-block">
+          <div class="video-placeholder" aria-label="Video: How to Bake the Perfect Pizza">
+            <span class="play-icon" aria-hidden="true">▶</span>
+          </div>
+          <p class="video-description">Master oven temperatures, pizza stone techniques, and timing to achieve a perfectly golden, crispy base with bubbling, melted cheese on top. Includes tips for both conventional and fan-assisted ovens.</p>
+        </div>
+        <div class="instructions">
+          <h3>Instructions</h3>
+          <ol>
+            <li>Preheat your oven to its maximum temperature (usually 250–280 °C / 480–540 °F) for at least 30 minutes.</li>
+            <li>If using a pizza stone or steel, place it in the oven during preheating.</li>
+            <li>Slide the assembled pizza onto the hot stone or a baking tray lined with parchment paper.</li>
+            <li>Bake for 8–12 minutes until the crust is golden and the cheese is bubbling and slightly browned.</li>
+            <li>Remove from the oven, slice, and serve immediately.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2024 Pizza Making Guide. Buon appetito! 🍕</p>
+  </footer>
 
   <script src="js/main.js"></script>
 </body>
