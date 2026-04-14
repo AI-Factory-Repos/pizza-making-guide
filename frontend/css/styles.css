@@ -1,8 +1,7 @@
-/* =============================================
-   Pizza Making Guide — Styles
-   ============================================= */
+/* =========================================================
+   Pizza Making Guide — Global Styles
+   ========================================================= */
 
-/* ---------- Reset & Base ---------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -15,506 +14,200 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: #fafaf8;
-  color: #2d2d2d;
-  line-height: 1.65;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdf8f2;
+  color: #2c2c2c;
+  line-height: 1.6;
 }
 
-/* ---------- Container ---------- */
+/* ----- Layout helpers ----- */
 .container {
-  max-width: 1080px;
+  width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.25rem;
 }
 
-/* ---------- Header ---------- */
+/* ----- Site Header ----- */
 .site-header {
-  background: #c0392b;
+  background-color: #c0392b;
   color: #fff;
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .site-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-.site-header h1 {
+.site-title {
   font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: .3px;
+  letter-spacing: 0.5px;
 }
 
-.main-nav a {
-  color: #ffe0dc;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: .95rem;
-  transition: color .2s;
-}
-
-.main-nav a:hover {
-  color: #fff;
-}
-
-/* ---------- Footer ---------- */
-.site-footer {
-  background: #2d2d2d;
-  color: #aaa;
-  text-align: center;
-  padding: 1.5rem 0;
-  font-size: .9rem;
-  margin-top: 4rem;
-}
-
-/* =============================================
-   TOPPINGS GUIDE SECTION
-   ============================================= */
-
-.toppings-guide {
-  padding: 3rem 0 4rem;
-}
-
-.section-title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #c0392b;
-  margin-bottom: .75rem;
-  text-align: center;
-}
-
-.section-intro {
-  text-align: center;
-  color: #555;
-  max-width: 680px;
-  margin: 0 auto 2.5rem;
-  font-size: 1.05rem;
-}
-
-/* ---------- Accordion ---------- */
-.accordion {
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-}
-
-.accordion-item {
-  background: #fff;
-  border: 1px solid #e8e0d8;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
-  transition: box-shadow .2s;
-}
-
-.accordion-item:focus-within {
-  box-shadow: 0 0 0 3px rgba(192,57,43,.25);
-}
-
-.accordion-header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: .85rem;
-  background: none;
-  border: none;
-  padding: 1.1rem 1.4rem;
-  cursor: pointer;
-  text-align: left;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #2d2d2d;
-  transition: background .15s;
-}
-
-.accordion-header:hover {
-  background: #fdf5f4;
-}
-
-.accordion-header[aria-expanded="true"] {
-  background: #fdf0ee;
-  color: #c0392b;
-}
-
-.acc-icon {
-  font-size: 1.35rem;
-  flex-shrink: 0;
-}
-
-.acc-title {
-  flex: 1;
-}
-
-.acc-chevron {
-  width: 1rem;
-  height: 1rem;
-  border-right: 2.5px solid currentColor;
-  border-bottom: 2.5px solid currentColor;
-  transform: rotate(45deg);
-  transition: transform .25s;
-  flex-shrink: 0;
-  margin-right: .25rem;
-}
-
-.accordion-header[aria-expanded="true"] .acc-chevron {
-  transform: rotate(-135deg);
-}
-
-/* ---------- Panel ---------- */
-.accordion-panel {
-  overflow: hidden;
-  transition: max-height .35s ease;
-}
-
-.accordion-panel[hidden] {
-  display: block;
-  max-height: 0;
-  visibility: hidden;
-}
-
-.accordion-panel.is-open {
-  max-height: 9999px;
-  visibility: visible;
-}
-
-.panel-content {
-  padding: 1.5rem 1.4rem 2rem;
-  border-top: 1px solid #f0e8e4;
-}
-
-.panel-intro {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 1.5rem;
-  max-width: 820px;
-}
-
-/* ---------- Guidance Grid ---------- */
-.guidance-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.75rem;
-}
-
-.guidance-card {
-  background: #fafaf8;
-  border: 1px solid #e8e0d8;
-  border-radius: 8px;
-  padding: 1rem 1.1rem;
-}
-
-.guidance-card h4 {
-  font-size: .95rem;
-  font-weight: 700;
-  color: #c0392b;
-  margin-bottom: .5rem;
-}
-
-.guidance-card p {
-  font-size: .9rem;
-  color: #444;
-  margin-bottom: .5rem;
-}
-
-.guidance-card ul {
-  padding-left: 1.1rem;
-  font-size: .875rem;
-  color: #555;
-}
-
-.guidance-card li {
-  margin-bottom: .2rem;
-}
-
-/* ---------- Tip Box ---------- */
-.tip-box {
-  background: #fff8e1;
-  border-left: 4px solid #f39c12;
-  border-radius: 0 6px 6px 0;
-  padding: .9rem 1.1rem;
-  font-size: .9rem;
-  color: #5a4000;
-  margin: 1.25rem 0;
-}
-
-/* ---------- Cheese Blend Table ---------- */
-.blend-guide {
-  margin: 1.5rem 0;
-}
-
-.blend-guide h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: .75rem;
-  color: #2d2d2d;
-}
-
-.blend-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: .875rem;
-}
-
-.blend-table th {
-  background: #c0392b;
-  color: #fff;
-  text-align: left;
-  padding: .55rem .8rem;
-  font-weight: 600;
-}
-
-.blend-table td {
-  padding: .5rem .8rem;
-  border-bottom: 1px solid #ede8e4;
-  color: #444;
-}
-
-.blend-table tr:last-child td {
-  border-bottom: none;
-}
-
-.blend-table tr:nth-child(even) td {
-  background: #fafaf8;
-}
-
-/* ---------- Layer Diagram ---------- */
-.layer-diagram {
-  margin-bottom: 1.75rem;
-}
-
-.layer-diagram h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #2d2d2d;
-}
-
-.layer-list {
+.site-nav ul {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: .6rem;
-}
-
-.layer-item {
-  display: flex;
-  align-items: flex-start;
-  gap: .9rem;
-  background: #fafaf8;
-  border: 1px solid #e8e0d8;
-  border-radius: 8px;
-  padding: .8rem 1rem;
-}
-
-.layer-num {
-  background: #c0392b;
-  color: #fff;
-  font-weight: 800;
-  font-size: .85rem;
-  width: 1.8rem;
-  height: 1.8rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.layer-info strong {
-  display: block;
-  font-size: .95rem;
-  color: #2d2d2d;
-  margin-bottom: .15rem;
-}
-
-.layer-info p {
-  font-size: .865rem;
-  color: #555;
-}
-
-/* ---------- Flavor Combos ---------- */
-.flavor-combos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.combo-card {
-  border: 1px solid #e8e0d8;
-  border-radius: 10px;
-  padding: 1.1rem 1.2rem;
-  position: relative;
-  background: #fff;
-}
-
-.combo-badge {
-  display: inline-block;
-  font-size: .7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  background: #c0392b;
-  color: #fff;
-  border-radius: 4px;
-  padding: .15rem .5rem;
-  margin-bottom: .6rem;
-}
-
-.gourmet-badge { background: #8e44ad; }
-.bold-badge     { background: #d35400; }
-.veg-badge      { background: #27ae60; }
-
-.combo-card h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #2d2d2d;
-  margin-bottom: .4rem;
-}
-
-.combo-desc {
-  font-size: .875rem;
-  color: #555;
-  margin-bottom: .5rem;
-  font-style: italic;
-}
-
-.combo-notes {
-  font-size: .85rem;
-  color: #444;
-  margin-bottom: .75rem;
-}
-
-.flavor-tags {
-  display: flex;
+  gap: 1.25rem;
   flex-wrap: wrap;
-  gap: .35rem;
 }
 
-.tag {
-  background: #f0ece8;
-  color: #666;
-  font-size: .75rem;
-  font-weight: 600;
-  border-radius: 20px;
-  padding: .15rem .6rem;
-}
-
-/* ---------- Flavor Principles ---------- */
-.flavor-principles {
-  background: #fafaf8;
-  border: 1px solid #e8e0d8;
-  border-radius: 10px;
-  padding: 1.25rem 1.4rem;
-}
-
-.flavor-principles h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #2d2d2d;
-}
-
-.principles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1rem;
-}
-
-.principle-item {
-  display: flex;
-  gap: .75rem;
-  align-items: flex-start;
-}
-
-.principle-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
-  margin-top: .1rem;
-}
-
-.principle-item strong {
-  display: block;
-  font-size: .9rem;
-  margin-bottom: .25rem;
-  color: #2d2d2d;
-}
-
-.principle-item p {
-  font-size: .85rem;
-  color: #555;
-}
-
-/* ---------- Video Block ---------- */
-.video-block {
-  margin-top: 1.75rem;
-  background: #1a1a1a;
-  border-radius: 10px;
-  padding: 1.25rem 1.4rem;
-  color: #eee;
-}
-
-.video-block h4 {
-  font-size: .95rem;
-  font-weight: 700;
-  margin-bottom: .85rem;
+.site-nav a {
   color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #000;
+.site-nav a:hover,
+.site-nav a:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  outline: none;
 }
 
-.video-container iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
+/* ----- Sections ----- */
+.section {
+  padding: 3.5rem 0;
 }
 
-.video-caption {
-  margin-top: .75rem;
-  font-size: .83rem;
+.section:nth-child(even) {
+  background-color: #fff;
+}
+
+.section__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #c0392b;
+  margin-bottom: 0.5rem;
+}
+
+.section__intro {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  max-width: 650px;
+}
+
+/* ----- Equipment & Tools Section ----- */
+.section--equipment {
+  background-color: #fdf8f2;
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Equipment Card */
+.equipment-card {
+  background-color: #fff;
+  border: 1px solid #e8d8c8;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.equipment-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.equipment-card__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.equipment-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+.equipment-card__description {
+  font-size: 0.9rem;
+  color: #666;
+  flex-grow: 1;
+}
+
+.equipment-card__badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  width: fit-content;
+}
+
+.equipment-card__badge--essential {
+  background-color: #fde8e8;
+  color: #c0392b;
+}
+
+.equipment-card__badge--optional {
+  background-color: #e8f4fd;
+  color: #2980b9;
+}
+
+/* ----- Intro Section ----- */
+.section--intro h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #2c2c2c;
+}
+
+/* ----- Footer ----- */
+.site-footer {
+  background-color: #2c2c2c;
   color: #aaa;
-  line-height: 1.5;
+  text-align: center;
+  padding: 1.25rem 0;
+  font-size: 0.85rem;
 }
 
-/* ---------- Responsive ---------- */
+/* ----- Utility ----- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ----- Responsive ----- */
 @media (max-width: 600px) {
-  .section-title {
-    font-size: 1.5rem;
+  .site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .accordion-header {
-    font-size: .95rem;
-    padding: .9rem 1rem;
+  .site-nav ul {
+    gap: 0.75rem;
   }
 
-  .panel-content {
-    padding: 1.1rem 1rem 1.5rem;
-  }
-
-  .blend-table {
-    font-size: .8rem;
-  }
-
-  .blend-table th,
-  .blend-table td {
-    padding: .4rem .5rem;
+  .section__title {
+    font-size: 1.4rem;
   }
 }
