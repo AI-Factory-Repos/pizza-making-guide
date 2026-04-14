@@ -7,190 +7,276 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+
   <header class="site-header">
-    <h1>🍕 Pizza Making Guide</h1>
-    <p class="tagline">From dough to delicious — master every step.</p>
+    <div class="container">
+      <h1>🍕 The Complete Pizza Making Guide</h1>
+      <p class="tagline">From dough to perfection — every step covered</p>
+    </div>
   </header>
 
-  <main class="main-content">
+  <nav class="main-nav" aria-label="Guide sections">
+    <div class="container">
+      <ul>
+        <li><a href="#finishing-techniques">Finishing Techniques</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- ===== TIMING SECTION ===== -->
-    <section class="section" id="timing-section">
-      <h2 class="section-title">Baking Timing Guidelines</h2>
-      <p class="section-intro">Choose your pizza style to see the recommended baking window and set the interactive timer.</p>
+  <main class="container">
 
-      <div class="style-cards">
-        <!-- Thin Crust -->
-        <div class="style-card" data-style="thin" data-min="8" data-max="12">
-          <div class="style-card__icon">🫓</div>
-          <h3 class="style-card__title">Thin Crust</h3>
-          <p class="style-card__range">8 – 12 minutes</p>
-          <ul class="style-card__tips">
-            <li>High heat (500 °F / 260 °C)</li>
-            <li>Pre-heat baking stone/steel</li>
-            <li>Watch edges closely after 7 min</li>
+    <!-- ===== FINISHING TECHNIQUES ===== -->
+    <section id="finishing-techniques" class="guide-section">
+      <h2>Finishing Techniques</h2>
+      <p class="section-intro">The final touches transform a good pizza into a great one. Master these three finishing techniques to elevate every bake.</p>
+
+      <div class="techniques-grid">
+
+        <!-- Olive Oil Drizzle -->
+        <article class="technique-card" id="olive-oil-drizzle">
+          <div class="technique-icon" aria-hidden="true">🫒</div>
+          <h3>Olive Oil Drizzle</h3>
+          <p>A generous drizzle of high-quality extra-virgin olive oil added <strong>immediately after baking</strong> adds richness, gloss, and depth of flavour.</p>
+          <ul class="technique-steps">
+            <li>Use a good-quality extra-virgin olive oil with fruity, peppery notes.</li>
+            <li>Pull the pizza from the oven and let it rest on a wire rack for 60 seconds.</li>
+            <li>Drizzle in a thin, circular motion from the centre outward — about 1–2 tablespoons.</li>
+            <li>Avoid pooling oil in the centre; keep it light and even.</li>
           </ul>
-          <button class="btn btn--primary select-style-btn" data-style="thin" data-min="8" data-max="12" data-label="Thin Crust">
-            Use Thin Crust Timer
-          </button>
-        </div>
+          <div class="video-demo">
+            <div class="video-wrapper" data-video-id="olive-oil">
+              <button class="video-play-btn" aria-label="Play olive oil drizzle demonstration video">
+                <span class="play-icon" aria-hidden="true">▶</span>
+                <span>Watch Demonstration</span>
+              </button>
+              <div class="video-placeholder" role="img" aria-label="Olive oil drizzle technique preview thumbnail">
+                <span class="video-thumb-icon" aria-hidden="true">🎬</span>
+                <p>Olive Oil Drizzle — Video Demo</p>
+              </div>
+            </div>
+          </div>
+        </article>
 
-        <!-- Thick Crust -->
-        <div class="style-card" data-style="thick" data-min="12" data-max="18">
-          <div class="style-card__icon">🍞</div>
-          <h3 class="style-card__title">Thick Crust</h3>
-          <p class="style-card__range">12 – 18 minutes</p>
-          <ul class="style-card__tips">
-            <li>Medium-high heat (450 °F / 230 °C)</li>
-            <li>Pan pizza works great</li>
-            <li>Check bottom color before pulling</li>
+        <!-- Fresh Herbs -->
+        <article class="technique-card" id="fresh-herbs">
+          <div class="technique-icon" aria-hidden="true">🌿</div>
+          <h3>Fresh Herbs</h3>
+          <p>Fresh herbs added <strong>after baking</strong> retain their colour, aroma, and brightness — never wilt them in the oven.</p>
+          <ul class="technique-steps">
+            <li><strong>Basil:</strong> Tear leaves by hand and scatter over the pizza just before serving.</li>
+            <li><strong>Oregano:</strong> Rub dried or fresh leaves between your fingers to release oils, then sprinkle.</li>
+            <li><strong>Rocket / Arugula:</strong> Lightly dress with lemon juice and layer on top for a peppery finish.</li>
+            <li><strong>Chilli flakes:</strong> Add a pinch for heat; pair with fennel sausage or pepperoni toppings.</li>
           </ul>
-          <button class="btn btn--primary select-style-btn" data-style="thick" data-min="12" data-max="18" data-label="Thick Crust">
-            Use Thick Crust Timer
-          </button>
-        </div>
-      </div>
-
-      <!-- Interactive Timer -->
-      <div class="timer-widget" id="timer-widget" aria-live="polite">
-        <div class="timer-widget__header">
-          <h3 class="timer-widget__title" id="timer-style-label">Select a style above to start</h3>
-        </div>
-
-        <div class="timer-range-selector" id="timer-range-selector" hidden>
-          <label for="timer-duration">Set timer duration (minutes):</label>
-          <div class="timer-range-row">
-            <span class="timer-range-bound" id="timer-min-label">8</span>
-            <input type="range" id="timer-duration" class="timer-slider" min="8" max="12" value="10" step="1" />
-            <span class="timer-range-bound" id="timer-max-label">12</span>
+          <div class="video-demo">
+            <div class="video-wrapper" data-video-id="fresh-herbs">
+              <button class="video-play-btn" aria-label="Play fresh herbs demonstration video">
+                <span class="play-icon" aria-hidden="true">▶</span>
+                <span>Watch Demonstration</span>
+              </button>
+              <div class="video-placeholder" role="img" aria-label="Fresh herbs technique preview thumbnail">
+                <span class="video-thumb-icon" aria-hidden="true">🎬</span>
+                <p>Fresh Herbs — Video Demo</p>
+              </div>
+            </div>
           </div>
-          <p class="timer-selected-value">Selected: <strong id="timer-selected-minutes">10</strong> min</p>
-        </div>
+        </article>
 
-        <div class="timer-display" id="timer-display" hidden>
-          <div class="timer-clock" id="timer-clock" aria-label="Countdown timer">10:00</div>
-          <div class="timer-progress-bar">
-            <div class="timer-progress-fill" id="timer-progress-fill"></div>
+        <!-- Final Seasoning -->
+        <article class="technique-card" id="final-seasoning">
+          <div class="technique-icon" aria-hidden="true">🧂</div>
+          <h3>Final Seasoning</h3>
+          <p>A last-minute seasoning pass just before serving can make every ingredient shine. Taste, then adjust.</p>
+          <ul class="technique-steps">
+            <li><strong>Flaky sea salt:</strong> A pinch on the crust adds crunch and contrast.</li>
+            <li><strong>Black pepper:</strong> Freshly cracked pepper over cheese or egg-topped pizzas is essential.</li>
+            <li><strong>Lemon zest:</strong> Microplane fresh zest over seafood or vegetable pizzas for brightness.</li>
+            <li><strong>Parmesan or Pecorino:</strong> Finely grate over the top just before slicing for a salty, umami hit.</li>
+          </ul>
+          <div class="video-demo">
+            <div class="video-wrapper" data-video-id="final-seasoning">
+              <button class="video-play-btn" aria-label="Play final seasoning demonstration video">
+                <span class="play-icon" aria-hidden="true">▶</span>
+                <span>Watch Demonstration</span>
+              </button>
+              <div class="video-placeholder" role="img" aria-label="Final seasoning technique preview thumbnail">
+                <span class="video-thumb-icon" aria-hidden="true">🎬</span>
+                <p>Final Seasoning — Video Demo</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <div class="timer-controls" id="timer-controls" hidden>
-          <button class="btn btn--success" id="timer-start-btn">▶ Start</button>
-          <button class="btn btn--warning" id="timer-pause-btn" disabled>⏸ Pause</button>
-          <button class="btn btn--danger" id="timer-reset-btn">↺ Reset</button>
-        </div>
-
-        <p class="timer-status" id="timer-status"></p>
       </div>
     </section>
 
-    <!-- ===== DONENESS SECTION ===== -->
-    <section class="section" id="doneness-section">
-      <h2 class="section-title">Visual Doneness Indicators</h2>
-      <p class="section-intro">Use these visual cues to know exactly when your pizza is perfectly baked.</p>
+    <!-- ===== TROUBLESHOOTING GUIDE ===== -->
+    <section id="troubleshooting" class="guide-section">
+      <h2>Common Baking Problems &amp; Solutions</h2>
+      <p class="section-intro">Even experienced pizza makers encounter baking issues. Use this guide to diagnose problems and fix them before the next bake.</p>
 
-      <div class="doneness-grid">
+      <div class="problems-list">
 
-        <!-- Crust Color -->
-        <div class="doneness-card">
-          <div class="doneness-photo doneness-photo--crust" role="img" aria-label="Crust color example">
-            <div class="photo-sim photo-sim--crust">
-              <div class="crust-ring">
-                <span class="crust-label">Golden Brown Edge</span>
+        <!-- Soggy Bottom -->
+        <article class="problem-card" id="soggy-bottom">
+          <header class="problem-header">
+            <span class="problem-badge problem-badge--warning" aria-label="Warning level">⚠️ Common</span>
+            <h3>Soggy Bottom</h3>
+          </header>
+          <div class="problem-body">
+            <div class="problem-detail">
+              <h4>Symptoms</h4>
+              <p>The base of the pizza is wet, chewy, or not fully cooked even though the toppings look done. The crust lacks crispness and may feel limp when lifted.</p>
+
+              <h4>Causes</h4>
+              <ul>
+                <li>Too much sauce or wet toppings releasing moisture during baking.</li>
+                <li>Oven or stone not preheated to full temperature before baking.</li>
+                <li>Dough stretched too thin in the centre.</li>
+                <li>Baking on a cold or damp surface.</li>
+              </ul>
+
+              <h4>Solutions</h4>
+              <ul class="solutions-list">
+                <li>✅ Preheat your oven and pizza stone or steel for <strong>at least 45–60 minutes</strong> at maximum temperature.</li>
+                <li>✅ Spread sauce in a thin, even layer — leave a visible margin at the edge.</li>
+                <li>✅ Pat wet toppings (fresh mozzarella, mushrooms, tomatoes) dry with paper towels before use.</li>
+                <li>✅ Par-bake the base for 3–4 minutes before adding toppings if moisture is a persistent issue.</li>
+                <li>✅ Use a pizza screen or perforated pan to allow airflow under the base.</li>
+              </ul>
+            </div>
+
+            <div class="video-demo">
+              <div class="video-wrapper" data-video-id="soggy-bottom">
+                <button class="video-play-btn" aria-label="Play soggy bottom identification and fix video">
+                  <span class="play-icon" aria-hidden="true">▶</span>
+                  <span>Watch Problem &amp; Fix</span>
+                </button>
+                <div class="video-placeholder" role="img" aria-label="Soggy bottom problem identification preview thumbnail">
+                  <span class="video-thumb-icon" aria-hidden="true">🎬</span>
+                  <p>Soggy Bottom — Problem &amp; Fix</p>
+                </div>
               </div>
             </div>
-            <span class="doneness-badge">Crust Color</span>
           </div>
-          <div class="doneness-info">
-            <h3>🟤 Crust Color</h3>
-            <ul>
-              <li><span class="indicator underdone">Pale / White</span> — needs more time</li>
-              <li><span class="indicator perfect">Golden Brown</span> — perfectly done</li>
-              <li><span class="indicator overdone">Dark Brown / Black</span> — overdone</li>
-            </ul>
-            <p class="doneness-tip">The bottom of the crust should be an even golden brown when lifted with a spatula.</p>
-          </div>
-        </div>
+        </article>
 
-        <!-- Cheese Bubbling -->
-        <div class="doneness-card">
-          <div class="doneness-photo doneness-photo--cheese" role="img" aria-label="Cheese bubbling example">
-            <div class="photo-sim photo-sim--cheese">
-              <div class="cheese-bubbles">
-                <div class="bubble b1"></div>
-                <div class="bubble b2"></div>
-                <div class="bubble b3"></div>
-                <div class="bubble b4"></div>
-              </div>
-              <span class="cheese-label">Bubbling &amp; Melted</span>
+        <!-- Burnt Edges -->
+        <article class="problem-card" id="burnt-edges">
+          <header class="problem-header">
+            <span class="problem-badge problem-badge--danger" aria-label="Danger level">🔴 Frustrating</span>
+            <h3>Burnt Edges</h3>
+          </header>
+          <div class="problem-body">
+            <div class="problem-detail">
+              <h4>Symptoms</h4>
+              <p>The cornicione (crust edge) chars or burns black while the centre is still cooking. The edges may taste bitter or acrid.</p>
+
+              <h4>Causes</h4>
+              <ul>
+                <li>Oven temperature too high, especially in smaller ovens with intense top heat.</li>
+                <li>Pizza positioned too close to the top heating element or broiler.</li>
+                <li>Sugar or honey in the dough recipe accelerating browning.</li>
+                <li>Toppings placed too close to the edge.</li>
+              </ul>
+
+              <h4>Solutions</h4>
+              <ul class="solutions-list">
+                <li>✅ Move the rack to the <strong>lower third</strong> of the oven to balance top and bottom heat.</li>
+                <li>✅ Shield exposed crust with small strips of aluminium foil after it reaches desired colour.</li>
+                <li>✅ Reduce oven temperature by 10–15 °C if you see the crust browning within the first 3 minutes.</li>
+                <li>✅ Extend sauce and cheese to within 1.5 cm of the edge to protect and insulate the crust.</li>
+                <li>✅ Reduce or eliminate added sugars in your dough if burning is a recurring issue.</li>
+              </ul>
             </div>
-            <span class="doneness-badge">Cheese</span>
-          </div>
-          <div class="doneness-info">
-            <h3>🧀 Cheese Bubbling</h3>
-            <ul>
-              <li><span class="indicator underdone">Solid / Unmelted</span> — not ready</li>
-              <li><span class="indicator perfect">Bubbling with light brown spots</span> — perfect</li>
-              <li><span class="indicator overdone">Fully charred / separated</span> — too long</li>
-            </ul>
-            <p class="doneness-tip">Look for active bubbling across most of the surface with some golden-brown spots on the peaks.</p>
-          </div>
-        </div>
 
-        <!-- Edge Browning -->
-        <div class="doneness-card">
-          <div class="doneness-photo doneness-photo--edge" role="img" aria-label="Edge browning example">
-            <div class="photo-sim photo-sim--edge">
-              <div class="edge-slice">
-                <div class="slice-body"></div>
-                <div class="slice-edge"></div>
+            <div class="video-demo">
+              <div class="video-wrapper" data-video-id="burnt-edges">
+                <button class="video-play-btn" aria-label="Play burnt edges identification and fix video">
+                  <span class="play-icon" aria-hidden="true">▶</span>
+                  <span>Watch Problem &amp; Fix</span>
+                </button>
+                <div class="video-placeholder" role="img" aria-label="Burnt edges problem identification preview thumbnail">
+                  <span class="video-thumb-icon" aria-hidden="true">🎬</span>
+                  <p>Burnt Edges — Problem &amp; Fix</p>
+                </div>
               </div>
-              <span class="edge-label">Browned Edges</span>
             </div>
-            <span class="doneness-badge">Edge Browning</span>
           </div>
-          <div class="doneness-info">
-            <h3>🔥 Edge Browning</h3>
-            <ul>
-              <li><span class="indicator underdone">Doughy &amp; pale</span> — needs more time</li>
-              <li><span class="indicator perfect">Puffed &amp; golden with char spots</span> — perfect</li>
-              <li><span class="indicator overdone">Completely charred</span> — overdone</li>
-            </ul>
-            <p class="doneness-tip">Edges should puff up and show leopard-spot char marks for authentic Neapolitan style.</p>
-          </div>
-        </div>
+        </article>
 
-      </div>
+        <!-- Undercooked Centre -->
+        <article class="problem-card" id="undercooked-centre">
+          <header class="problem-header">
+            <span class="problem-badge problem-badge--warning" aria-label="Warning level">⚠️ Common</span>
+            <h3>Undercooked Centre</h3>
+          </header>
+          <div class="problem-body">
+            <div class="problem-detail">
+              <h4>Symptoms</h4>
+              <p>The pizza looks done on the outside but the centre of the base is doughy, pale, or gummy. Cheese may be fully melted while the dough underneath is raw.</p>
 
-      <!-- Doneness Scale -->
-      <div class="doneness-scale">
-        <h3 class="doneness-scale__title">Overall Doneness Scale</h3>
-        <div class="scale-bar">
-          <div class="scale-segment scale-underdone">
-            <span>Underdone</span>
+              <h4>Causes</h4>
+              <ul>
+                <li>Too many toppings weighing down the centre and insulating the dough from heat.</li>
+                <li>Dough base too thick in the centre.</li>
+                <li>Oven not hot enough or stone not fully preheated.</li>
+                <li>Opening the oven door too frequently causing heat loss.</li>
+              </ul>
+
+              <h4>Solutions</h4>
+              <ul class="solutions-list">
+                <li>✅ Use fewer toppings — a Neapolitan pizza uses <strong>less than you think</strong>.</li>
+                <li>✅ Stretch the dough more evenly so the centre is no thicker than the rest of the base.</li>
+                <li>✅ Bake directly on a preheated pizza stone or steel for maximum base heat transfer.</li>
+                <li>✅ If the top is done but the base isn't, slide the pizza off the tray and onto the oven floor for 1–2 minutes.</li>
+                <li>✅ Check doneness by lifting an edge with a spatula — the base should be firm and golden, not pale.</li>
+              </ul>
+            </div>
+
+            <div class="video-demo">
+              <div class="video-wrapper" data-video-id="undercooked-centre">
+                <button class="video-play-btn" aria-label="Play undercooked centre identification and fix video">
+                  <span class="play-icon" aria-hidden="true">▶</span>
+                  <span>Watch Problem &amp; Fix</span>
+                </button>
+                <div class="video-placeholder" role="img" aria-label="Undercooked centre problem identification preview thumbnail">
+                  <span class="video-thumb-icon" aria-hidden="true">🎬</span>
+                  <p>Undercooked Centre — Problem &amp; Fix</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="scale-segment scale-perfect">
-            <span>✓ Perfect</span>
-          </div>
-          <div class="scale-segment scale-overdone">
-            <span>Overdone</span>
-          </div>
-        </div>
-        <div class="scale-labels">
-          <span>Pale &amp; Soft</span>
-          <span>Golden &amp; Crisp</span>
-          <span>Dark &amp; Bitter</span>
-        </div>
+        </article>
+
       </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2024 Pizza Making Guide</p>
+    <div class="container">
+      <p>&copy; 2024 Pizza Making Guide. Happy baking! 🍕</p>
+    </div>
   </footer>
 
-  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+  <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="video-modal__backdrop"></div>
+    <div class="video-modal__content">
+      <div class="video-modal__header">
+        <h2 id="modal-title" class="video-modal__title">Video Demonstration</h2>
+        <button class="video-modal__close" aria-label="Close video">&times;</button>
+      </div>
+      <div class="video-modal__body">
+        <div class="video-modal__screen" id="modal-screen">
+          <span aria-hidden="true">🎬</span>
+          <p id="modal-video-label">Video player placeholder</p>
+          <p class="video-modal__note">In a production environment, embed your video source (YouTube, Vimeo, or self-hosted) here using an <code>&lt;iframe&gt;</code> or <code>&lt;video&gt;</code> element.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
