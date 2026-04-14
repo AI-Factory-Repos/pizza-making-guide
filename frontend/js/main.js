@@ -1,111 +1,166 @@
-/* =============================================
-   Pizza Making Guide — Main JS
-   ============================================= */
+/**
+ * Pizza Making Guide — main.js
+ * Core JavaScript for the equipment & tools section (Part 1).
+ */
 
-(function () {
-  'use strict';
+'use strict';
 
-  /**
-   * Accordion component
-   * Each .accordion-item contains:
-   *   - .accordion-header  (button, aria-expanded, aria-controls)
-   *   - .accordion-panel   (div, id, hidden attribute)
-   */
-  function initAccordion () {
-    const accordion = document.getElementById('toppings-accordion');
-    if (!accordion) return;
+// ---------------------------------------------------------------------------
+// Equipment & Tools Data
+// ---------------------------------------------------------------------------
 
-    const headers = accordion.querySelectorAll('.accordion-header');
+/** @typedef {{ id: string, icon: string, name: string, description: string, essential: boolean }} EquipmentItem */
 
-    headers.forEach(function (header) {
-      header.addEventListener('click', function () {
-        const isExpanded = header.getAttribute('aria-expanded') === 'true';
-        const panelId    = header.getAttribute('aria-controls');
-        const panel      = document.getElementById(panelId);
+/** @type {EquipmentItem[]} */
+const EQUIPMENT_DATA = [
+  {
+    id: 'pizza-stone',
+    icon: '🪨',
+    name: 'Pizza Stone',
+    description: 'Retains and distributes heat evenly, giving your pizza a crispy, restaurant-style base.',
+    essential: true,
+  },
+  {
+    id: 'pizza-peel',
+    icon: '🍕',
+    name: 'Pizza Peel',
+    description: 'A flat paddle used to slide the pizza into and out of a hot oven safely.',
+    essential: true,
+  },
+  {
+    id: 'stand-mixer',
+    icon: '🥣',
+    name: 'Stand Mixer',
+    description: 'Makes kneading dough effortless and produces a consistent, well-developed gluten structure.',
+    essential: false,
+  },
+  {
+    id: 'rolling-pin',
+    icon: '🪄',
+    name: 'Rolling Pin',
+    description: 'Helpful for shaping dough uniformly, although hand-stretching is preferred by many pizza makers.',
+    essential: false,
+  },
+  {
+    id: 'dough-scraper',
+    icon: '🔪',
+    name: 'Bench / Dough Scraper',
+    description: 'Cuts and portions dough cleanly and helps lift sticky dough from the work surface.',
+    essential: true,
+  },
+  {
+    id: 'pizza-cutter',
+    icon: '⭕',
+    name: 'Pizza Cutter',
+    description: 'A wheel cutter or mezzaluna for slicing your finished pizza into clean portions.',
+    essential: true,
+  },
+  {
+    id: 'digital-scale',
+    icon: '⚖️',
+    name: 'Digital Kitchen Scale',
+    description: 'Weighing ingredients (especially flour) ensures recipe accuracy and consistent results every time.',
+    essential: true,
+  },
+  {
+    id: 'mixing-bowls',
+    icon: '🫙',
+    name: 'Mixing Bowls',
+    description: 'Large bowls for mixing and proofing dough, ideally with a tight-fitting lid or cling film.',
+    essential: true,
+  },
+  {
+    id: 'thermometer',
+    icon: '🌡️',
+    name: 'Instant-Read Thermometer',
+    description: 'Check dough temperature and water temperature to ensure optimal yeast activity.',
+    essential: false,
+  },
+  {
+    id: 'ladle',
+    icon: '🥄',
+    name: 'Ladle / Sauce Spreader',
+    description: 'Spreads tomato sauce in a smooth, even spiral across the pizza base without tearing it.',
+    essential: false,
+  },
+];
 
-        if (!panel) return;
+// ---------------------------------------------------------------------------
+// Equipment Card Renderer
+// ---------------------------------------------------------------------------
 
-        if (isExpanded) {
-          // Collapse
-          collapsePanel(header, panel);
-        } else {
-          // Expand
-          expandPanel(header, panel);
-        }
-      });
+/**
+ * Creates a DOM element for a single equipment item.
+ * @param {EquipmentItem} item
+ * @returns {HTMLElement}
+ */
+function createEquipmentCard(item) {
+  const article = document.createElement('article');
+  article.classList.add('equipment-card');
+  article.setAttribute('role', 'listitem');
+  article.dataset.equipmentId = item.id;
 
-      // Keyboard: Space / Enter already trigger click on <button>.
-      // Add arrow-key navigation between headers.
-      header.addEventListener('keydown', function (e) {
-        const allHeaders = Array.from(accordion.querySelectorAll('.accordion-header'));
-        const idx = allHeaders.indexOf(header);
+  const badgeClass = item.essential
+    ? 'equipment-card__badge--essential'
+    : 'equipment-card__badge--optional';
+  const badgeLabel = item.essential ? 'Essential' : 'Optional';
 
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          const next = allHeaders[idx + 1] || allHeaders[0];
-          next.focus();
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          const prev = allHeaders[idx - 1] || allHeaders[allHeaders.length - 1];
-          prev.focus();
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          allHeaders[0].focus();
-        } else if (e.key === 'End') {
-          e.preventDefault();
-          allHeaders[allHeaders.length - 1].focus();
-        }
-      });
-    });
+  article.innerHTML = `
+    <span class="equipment-card__icon" aria-hidden="true">${item.icon}</span>
+    <h3 class="equipment-card__name">${escapeHTML(item.name)}</h3>
+    <p class="equipment-card__description">${escapeHTML(item.description)}</p>
+    <span class="equipment-card__badge ${badgeClass}">${badgeLabel}</span>
+  `;
+
+  return article;
+}
+
+/**
+ * Renders all equipment cards into the grid container.
+ * @param {EquipmentItem[]} items
+ */
+function renderEquipmentGrid(items) {
+  const grid = document.getElementById('equipment-grid');
+  if (!grid) {
+    console.warn('[Equipment] Grid container #equipment-grid not found.');
+    return;
   }
 
-  function expandPanel (header, panel) {
-    header.setAttribute('aria-expanded', 'true');
-    panel.removeAttribute('hidden');
+  // Clear any existing content
+  grid.innerHTML = '';
 
-    // Animate height from 0 → scrollHeight using max-height trick
-    panel.classList.remove('is-open');
-    // Force reflow so transition plays
-    void panel.offsetHeight;
-    panel.classList.add('is-open');
-  }
-
-  function collapsePanel (header, panel) {
-    header.setAttribute('aria-expanded', 'false');
-    panel.classList.remove('is-open');
-
-    // Hide after transition ends
-    panel.addEventListener('transitionend', function handler () {
-      if (header.getAttribute('aria-expanded') === 'false') {
-        panel.setAttribute('hidden', '');
-      }
-      panel.removeEventListener('transitionend', handler);
-    });
-  }
-
-  /**
-   * Smooth-scroll for anchor nav links
-   */
-  function initSmoothScroll () {
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        const targetId = link.getAttribute('href').slice(1);
-        const target   = document.getElementById(targetId);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Move focus for accessibility
-          target.setAttribute('tabindex', '-1');
-          target.focus({ preventScroll: true });
-        }
-      });
-    });
-  }
-
-  // Boot
-  document.addEventListener('DOMContentLoaded', function () {
-    initAccordion();
-    initSmoothScroll();
+  const fragment = document.createDocumentFragment();
+  items.forEach((item) => {
+    fragment.appendChild(createEquipmentCard(item));
   });
 
-}());
+  grid.appendChild(fragment);
+}
+
+// ---------------------------------------------------------------------------
+// Utility
+// ---------------------------------------------------------------------------
+
+/**
+ * Escapes HTML special characters to prevent XSS.
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeHTML(str) {
+  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+  return String(str).replace(/[&<>"']/g, (char) => map[char]);
+}
+
+// ---------------------------------------------------------------------------
+// Initialisation
+// ---------------------------------------------------------------------------
+
+function init() {
+  renderEquipmentGrid(EQUIPMENT_DATA);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
