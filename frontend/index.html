@@ -7,36 +7,414 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <header class="site-header">
+    <div class="container">
+      <h1>🍕 Pizza Making Guide</h1>
+      <p class="tagline">Master the art of homemade pizza from dough to slice</p>
+    </div>
+  </header>
 
-  <main>
-    <!--
-      YouTube Embed Component
-      To embed a video, call createYouTubeEmbed() from main.js with:
-        - a container element
-        - a valid 11-character YouTube video ID
-        - optional { title, caption } options
+  <main class="container">
+    <!-- Dough Section -->
+    <section id="dough-section" class="guide-section">
+      <div class="section-intro">
+        <h2>The Dough</h2>
+        <p>Great pizza starts with great dough. Expand each step below for detailed instructions and video demonstrations.</p>
+      </div>
 
-      Example usage is shown below. Replace the videoId value with any real
-      YouTube video ID to display the player.
-    -->
-    <section id="video-section" aria-label="Pizza Making Video">
-      <div id="pizza-video"></div>
+      <!-- 1. Ingredient Measurements -->
+      <div class="accordion" id="accordion-ingredients">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-ingredients">
+          <span class="accordion-icon">🌾</span>
+          <span class="accordion-title">Ingredient Measurements</span>
+          <span class="accordion-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel" id="panel-ingredients" role="region" aria-labelledby="accordion-ingredients" hidden>
+          <div class="accordion-content">
+            <p class="panel-intro">Accurate measurements are the foundation of consistent dough. Use a kitchen scale for best results.</p>
+
+            <div class="recipe-grid">
+              <div class="recipe-card">
+                <h4>Neapolitan (2 pizzas)</h4>
+                <table class="ingredient-table">
+                  <thead><tr><th>Ingredient</th><th>Weight</th><th>Baker's %</th></tr></thead>
+                  <tbody>
+                    <tr><td>00 Flour</td><td>300 g</td><td>100%</td></tr>
+                    <tr><td>Water (65°F / 18°C)</td><td>195 g</td><td>65%</td></tr>
+                    <tr><td>Fine Sea Salt</td><td>7.5 g</td><td>2.5%</td></tr>
+                    <tr><td>Active Dry Yeast</td><td>0.6 g</td><td>0.2%</td></tr>
+                    <tr><td>Extra Virgin Olive Oil</td><td>9 g</td><td>3%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="recipe-card">
+                <h4>New York Style (2 pizzas)</h4>
+                <table class="ingredient-table">
+                  <thead><tr><th>Ingredient</th><th>Weight</th><th>Baker's %</th></tr></thead>
+                  <tbody>
+                    <tr><td>Bread Flour</td><td>320 g</td><td>100%</td></tr>
+                    <tr><td>Water (75°F / 24°C)</td><td>211 g</td><td>66%</td></tr>
+                    <tr><td>Fine Sea Salt</td><td>8 g</td><td>2.5%</td></tr>
+                    <tr><td>Active Dry Yeast</td><td>3.2 g</td><td>1%</td></tr>
+                    <tr><td>Olive Oil</td><td>16 g</td><td>5%</td></tr>
+                    <tr><td>Sugar</td><td>6.4 g</td><td>2%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="tips-block">
+              <h4>📏 Pro Tips</h4>
+              <ul>
+                <li>Always weigh ingredients — volume measurements are inconsistent for baking.</li>
+                <li>Water temperature matters: cold water slows fermentation; warm water speeds it up.</li>
+                <li>Add salt <strong>after</strong> the flour and water are combined — direct contact with yeast can inhibit activity.</li>
+                <li>00 flour creates a softer, more extensible dough ideal for Neapolitan-style; bread flour gives NY-style its chew.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Mixing Techniques -->
+      <div class="accordion" id="accordion-mixing">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-mixing">
+          <span class="accordion-icon">🥣</span>
+          <span class="accordion-title">Mixing Techniques</span>
+          <span class="accordion-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel" id="panel-mixing" role="region" aria-labelledby="accordion-mixing" hidden>
+          <div class="accordion-content">
+            <p class="panel-intro">How you mix the dough affects gluten development, texture, and final structure.</p>
+
+            <div class="steps-list">
+              <div class="step">
+                <span class="step-number">1</span>
+                <div class="step-body">
+                  <h4>Autolyse (Optional but Recommended)</h4>
+                  <p>Combine flour and water — hold back the salt and yeast. Mix until just combined (no dry flour). Rest <strong>20–30 minutes</strong>. This hydrates the flour and kick-starts gluten development with minimal effort, making kneading easier.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">2</span>
+                <div class="step-body">
+                  <h4>Add Yeast</h4>
+                  <p>Dissolve yeast in a small amount of the recipe water (lukewarm, 100–110°F / 38–43°C) for active dry yeast. Add to the dough and mix until evenly incorporated.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">3</span>
+                <div class="step-body">
+                  <h4>Add Salt &amp; Oil</h4>
+                  <p>Sprinkle salt over the dough. Add olive oil if using. Incorporate by folding and pressing — the dough will feel slippery at first, then come back together.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">4</span>
+                <div class="step-body">
+                  <h4>Mix to Shaggy Dough</h4>
+                  <p>Mix until no dry bits remain and a rough, shaggy ball forms. At this stage the dough does not need to be smooth — that comes from kneading.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-cards">
+              <div class="method-card">
+                <h4>By Hand</h4>
+                <p>Use a bowl scraper and bench scraper to bring the dough together. Fold the edges into the center and press down, rotating the bowl as you go.</p>
+              </div>
+              <div class="method-card">
+                <h4>Stand Mixer</h4>
+                <p>Use the dough hook. Mix on low (speed 2) for 2 minutes to combine, then medium (speed 4) for 6–8 minutes until the dough clears the bowl sides.</p>
+              </div>
+              <div class="method-card">
+                <h4>Food Processor</h4>
+                <p>Pulse dry ingredients, then add liquid with the machine running. Process 30–40 seconds until a smooth ball forms. Dough will be warm — refrigerate before proofing.</p>
+              </div>
+            </div>
+
+            <div class="video-embed">
+              <h4>🎬 Watch: Mixing Pizza Dough by Hand</h4>
+              <div class="video-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/l7O7TaFkBQk"
+                  title="Mixing Pizza Dough by Hand"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Kneading Methods -->
+      <div class="accordion" id="accordion-kneading">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-kneading">
+          <span class="accordion-icon">👐</span>
+          <span class="accordion-title">Kneading Methods</span>
+          <span class="accordion-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel" id="panel-kneading" role="region" aria-labelledby="accordion-kneading" hidden>
+          <div class="accordion-content">
+            <p class="panel-intro">Kneading develops gluten, creating the elastic network that traps CO₂ bubbles and gives pizza its signature chew and structure.</p>
+
+            <div class="steps-list">
+              <div class="step">
+                <span class="step-number">1</span>
+                <div class="step-body">
+                  <h4>Traditional Push-and-Fold</h4>
+                  <p>Push the dough away with the heel of your palm, fold it back toward you, rotate 90°, and repeat. Work for <strong>8–10 minutes</strong> until smooth and elastic. The dough should spring back slowly when poked.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">2</span>
+                <div class="step-body">
+                  <h4>Slap &amp; Fold (Rubaud Method)</h4>
+                  <p>Pick up the dough, slap it against the bench, fold the top third down and the bottom third up (like a letter). Rotate 90° and repeat. This is excellent for high-hydration doughs (65%+). Work for <strong>5–7 minutes</strong>.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">3</span>
+                <div class="step-body">
+                  <h4>Stretch &amp; Fold (No-Knead)</h4>
+                  <p>Leave the dough in the bowl. Every 30 minutes, wet your hand, grab one edge, stretch it up as high as possible, then fold it over the top. Rotate the bowl 90° and repeat 4 times per set. Do <strong>4–6 sets</strong> over 2 hours.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tips-block">
+              <h4>⚠️ Kneading Checklist</h4>
+              <ul>
+                <li>Avoid adding extra flour — a sticky dough is normal. Use a light mist of water or a scraper instead.</li>
+                <li>Work on an unfloured surface for push-and-fold to maintain friction.</li>
+                <li>The dough is ready when it passes the <strong>windowpane test</strong> (see video below).</li>
+                <li>Over-kneaded dough is tight and tears rather than stretches — if the dough tears frequently, rest it 10 minutes.</li>
+              </ul>
+            </div>
+
+            <div class="video-embed">
+              <h4>🎬 Watch: Proper Kneading Technique</h4>
+              <div class="video-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/2zAoTHqMaqw"
+                  title="How to Knead Pizza Dough"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+
+            <div class="video-embed">
+              <h4>🎬 Watch: The Windowpane Test</h4>
+              <div class="video-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/G2dVz6lf4_I"
+                  title="Windowpane Test for Pizza Dough"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <p class="video-caption">Stretch a small piece of dough between your fingers — if it forms a thin, translucent membrane without tearing, your gluten is fully developed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Proofing Times -->
+      <div class="accordion" id="accordion-proofing">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-proofing">
+          <span class="accordion-icon">⏱️</span>
+          <span class="accordion-title">Proofing Times</span>
+          <span class="accordion-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel" id="panel-proofing" role="region" aria-labelledby="accordion-proofing" hidden>
+          <div class="accordion-content">
+            <p class="panel-intro">Fermentation is where flavour develops. Longer, cooler proofs produce more complex, tangy flavour. Shorter, warmer proofs are more neutral but still delicious.</p>
+
+            <div class="proof-table-wrapper">
+              <table class="proof-table">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Temperature</th>
+                    <th>Bulk Ferment</th>
+                    <th>Ball Proof</th>
+                    <th>Flavour Profile</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Same-day</strong></td>
+                    <td>72–75°F (22–24°C)</td>
+                    <td>1–2 hours</td>
+                    <td>1–2 hours</td>
+                    <td>Mild, yeasty</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Overnight</strong></td>
+                    <td>38–40°F (3–4°C)</td>
+                    <td>8–24 hours</td>
+                    <td>2 hours (room temp)</td>
+                    <td>Developed, slightly tangy</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cold 48 hr</strong></td>
+                    <td>38–40°F (3–4°C)</td>
+                    <td>24–48 hours</td>
+                    <td>2 hours (room temp)</td>
+                    <td>Complex, nutty, tangy</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cold 72 hr</strong></td>
+                    <td>38–40°F (3–4°C)</td>
+                    <td>48–72 hours</td>
+                    <td>2–3 hours (room temp)</td>
+                    <td>Deep, sourdough-like</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="steps-list">
+              <div class="step">
+                <span class="step-number">1</span>
+                <div class="step-body">
+                  <h4>Bulk Fermentation</h4>
+                  <p>After kneading, shape the dough into a smooth ball. Place in a lightly oiled bowl, cover with plastic wrap or a damp towel. The dough should roughly double in size. <em>Look for volume, not just time.</em></p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">2</span>
+                <div class="step-body">
+                  <h4>Divide &amp; Ball</h4>
+                  <p>Turn the dough onto an unfloured surface. Divide into equal portions (typically 250–300 g each for a 12" pizza). Shape each portion into a tight ball by folding the edges under and rolling on the surface to create surface tension.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">3</span>
+                <div class="step-body">
+                  <h4>Second Proof (Ball Proof)</h4>
+                  <p>Place dough balls in a lightly oiled container or tray, spaced apart. Cover tightly. Proof at room temperature for 1–2 hours, or refrigerate for up to 72 hours. Remove from fridge <strong>at least 2 hours before baking</strong> to come to room temperature.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tips-block">
+              <h4>✅ How to Tell if Dough is Properly Proofed</h4>
+              <ul>
+                <li><strong>Poke test:</strong> Press a floured finger ½" into the dough. If it springs back slowly and partially, it's ready. If it springs back immediately, it needs more time. If it doesn't spring back at all, it's over-proofed.</li>
+                <li>The dough should feel airy, pillowy, and slightly jiggly when the container is shaken.</li>
+                <li>Over-proofed dough is still usable — bake it promptly and handle it gently.</li>
+              </ul>
+            </div>
+
+            <div class="video-embed">
+              <h4>🎬 Watch: Shaping Dough Balls &amp; Proofing</h4>
+              <div class="video-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/v5t5MEZt6LM"
+                  title="How to Shape Pizza Dough Balls"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Troubleshooting -->
+      <div class="accordion" id="accordion-troubleshooting">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-troubleshooting">
+          <span class="accordion-icon">🔧</span>
+          <span class="accordion-title">Troubleshooting</span>
+          <span class="accordion-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel" id="panel-troubleshooting" role="region" aria-labelledby="accordion-troubleshooting" hidden>
+          <div class="accordion-content">
+            <p class="panel-intro">Even experienced bakers run into issues. Here are the most common dough problems and how to fix them.</p>
+
+            <div class="trouble-list">
+              <details class="trouble-item">
+                <summary>Dough is too sticky and won't come together</summary>
+                <div class="trouble-body">
+                  <p><strong>Cause:</strong> Excess hydration, undermixing, or warm environment.</p>
+                  <p><strong>Fix:</strong> Use a bench scraper and wet hands rather than adding more flour. Work the dough through stretch-and-fold sets. Refrigerate for 20 minutes to firm it up, then continue.</p>
+                </div>
+              </details>
+              <details class="trouble-item">
+                <summary>Dough tears when stretched</summary>
+                <div class="trouble-body">
+                  <p><strong>Cause:</strong> Underdeveloped or over-stressed gluten (tight dough).</p>
+                  <p><strong>Fix:</strong> Cover and rest the dough for 15–20 minutes to allow the gluten to relax, then try again. Do not force it.</p>
+                </div>
+              </details>
+              <details class="trouble-item">
+                <summary>Dough isn't rising</summary>
+                <div class="trouble-body">
+                  <p><strong>Cause:</strong> Dead or inactive yeast, too-cold environment, or salt killed the yeast.</p>
+                  <p><strong>Fix:</strong> Test yeast by dissolving in 110°F water with a pinch of sugar — it should foam in 10 minutes. Place dough in a warm spot (75–80°F) or inside an oven with just the light on.</p>
+                </div>
+              </details>
+              <details class="trouble-item">
+                <summary>Dough is over-proofed (too puffy, collapses)</summary>
+                <div class="trouble-body">
+                  <p><strong>Cause:</strong> Left to ferment too long or in too-warm an environment.</p>
+                  <p><strong>Fix:</strong> Gently degas the dough by pressing it down, reshape into balls, and bake immediately. The flavour may be more sour but the pizza will still be edible. Reduce yeast or proof time next time.</p>
+                </div>
+              </details>
+              <details class="trouble-item">
+                <summary>Crust is too dense / no air bubbles</summary>
+                <div class="trouble-body">
+                  <p><strong>Cause:</strong> Under-proofed dough or insufficient oven temperature.</p>
+                  <p><strong>Fix:</strong> Allow more bulk fermentation time. Bake at the highest oven temperature possible (500°F+). Preheat your baking stone or steel for at least 45–60 minutes.</p>
+                </div>
+              </details>
+              <details class="trouble-item">
+                <summary>Crust is too tough / chewy</summary>
+                <div class="trouble-body">
+                  <p><strong>Cause:</strong> Over-kneaded dough, too much bread flour, or insufficient water.</p>
+                  <p><strong>Fix:</strong> Increase hydration by 2–3%. Try blending 50% bread flour + 50% all-purpose flour. Avoid over-working the dough after balling.</p>
+                </div>
+              </details>
+              <details class="trouble-item">
+                <summary>Dough springs back and won't stretch</summary>
+                <div class="trouble-body">
+                  <p><strong>Cause:</strong> Dough is too cold or gluten is too tense.</p>
+                  <p><strong>Fix:</strong> Let the dough warm up to room temperature (at least 60–90 minutes out of the fridge). Between attempts, cover and rest 10 minutes. Work from the center outward, never pulling from the edges.</p>
+                </div>
+              </details>
+            </div>
+
+            <div class="video-embed">
+              <h4>🎬 Watch: Common Pizza Dough Mistakes &amp; How to Fix Them</h4>
+              <div class="video-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/oEaXaJnOIoQ"
+                  title="Pizza Dough Troubleshooting Tips"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <script src="js/main.js"></script>
-  <script>
-    // Example: embed a YouTube video into #pizza-video
-    // Replace 'dQw4w9WgXcQ' with the desired YouTube video ID.
-    createYouTubeEmbed(
-      document.getElementById('pizza-video'),
-      'dQw4w9WgXcQ',
-      {
-        title: 'How to Make Pizza',
-        caption: 'Watch our step-by-step pizza making guide.'
-      }
-    );
-  </script>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2024 Pizza Making Guide. All rights reserved.</p>
+    </div>
+  </footer>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
