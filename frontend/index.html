@@ -7,214 +7,36 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <div class="container">
 
-    <header class="site-header">
-      <h1>🍕 Pizza Making Guide</h1>
-      <p class="site-subtitle">Everything you need to craft the perfect pizza from scratch.</p>
-    </header>
+  <main>
+    <!--
+      YouTube Embed Component
+      To embed a video, call createYouTubeEmbed() from main.js with:
+        - a container element
+        - a valid 11-character YouTube video ID
+        - optional { title, caption } options
 
-    <main id="main-content">
-
-      <section class="dropdown-group" aria-labelledby="section-basics">
-        <p class="dropdown-group__label" id="section-basics">The Basics</p>
-
-        <div
-          class="dropdown"
-          data-dropdown
-          id="dropdown-dough"
-        >
-          <button
-            class="dropdown__trigger"
-            aria-expanded="false"
-            aria-controls="dropdown-dough-body"
-            id="dropdown-dough-trigger"
-          >
-            <span class="dropdown__title">
-              <span class="dropdown__icon" aria-hidden="true">🌾</span>
-              Making the Dough
-            </span>
-            <svg class="dropdown__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div
-            class="dropdown__body"
-            id="dropdown-dough-body"
-            role="region"
-            aria-labelledby="dropdown-dough-trigger"
-          >
-            <div class="dropdown__content">
-              <p>A great pizza starts with the perfect dough. Use high-protein flour for a chewy, structured crust.</p>
-              <ul>
-                <li><strong>Flour:</strong> 500g bread flour (00 flour for Neapolitan style)</li>
-                <li><strong>Water:</strong> 325ml lukewarm (65% hydration)</li>
-                <li><strong>Yeast:</strong> 7g active dry yeast or 5g instant</li>
-                <li><strong>Salt:</strong> 10g fine sea salt</li>
-                <li><strong>Olive oil:</strong> 2 tbsp extra-virgin</li>
-              </ul>
-              <p>Mix and knead for 10 minutes until smooth and elastic. Cold-ferment in the refrigerator for 24–72 hours for best flavour.</p>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="dropdown"
-          data-dropdown
-          id="dropdown-sauce"
-        >
-          <button
-            class="dropdown__trigger"
-            aria-expanded="false"
-            aria-controls="dropdown-sauce-body"
-            id="dropdown-sauce-trigger"
-          >
-            <span class="dropdown__title">
-              <span class="dropdown__icon" aria-hidden="true">🍅</span>
-              Crafting the Sauce
-            </span>
-            <svg class="dropdown__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div
-            class="dropdown__body"
-            id="dropdown-sauce-body"
-            role="region"
-            aria-labelledby="dropdown-sauce-trigger"
-          >
-            <div class="dropdown__content">
-              <p>A simple, uncooked tomato sauce preserves freshness and won't become bitter during baking.</p>
-              <ul>
-                <li><strong>Tomatoes:</strong> 1 can (400g) San Marzano whole peeled tomatoes</li>
-                <li><strong>Garlic:</strong> 1 clove, crushed</li>
-                <li><strong>Salt:</strong> ½ tsp</li>
-                <li><strong>Basil:</strong> 3–4 fresh leaves, torn</li>
-              </ul>
-              <p>Crush tomatoes by hand or blend briefly. Do not cook the sauce — let the oven do the work.</p>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="dropdown"
-          data-dropdown
-          id="dropdown-cheese"
-        >
-          <button
-            class="dropdown__trigger"
-            aria-expanded="false"
-            aria-controls="dropdown-cheese-body"
-            id="dropdown-cheese-trigger"
-          >
-            <span class="dropdown__title">
-              <span class="dropdown__icon" aria-hidden="true">🧀</span>
-              Choosing Your Cheese
-            </span>
-            <svg class="dropdown__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div
-            class="dropdown__body"
-            id="dropdown-cheese-body"
-            role="region"
-            aria-labelledby="dropdown-cheese-trigger"
-          >
-            <div class="dropdown__content">
-              <p>Low-moisture mozzarella is the standard for most styles, while fresh buffalo mozzarella suits Neapolitan pies.</p>
-              <ul>
-                <li><strong>Low-moisture mozzarella:</strong> Shred yourself for better melt</li>
-                <li><strong>Fresh mozzarella:</strong> Tear and drain on paper towels to reduce moisture</li>
-                <li><strong>Provolone:</strong> Mix with mozzarella for a sharper flavour</li>
-                <li><strong>Pecorino Romano:</strong> Grate sparingly over the top after baking</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="dropdown-group" aria-labelledby="section-advanced">
-        <p class="dropdown-group__label" id="section-advanced">Techniques &amp; Tips</p>
-
-        <div
-          class="dropdown"
-          data-dropdown
-          id="dropdown-baking"
-        >
-          <button
-            class="dropdown__trigger"
-            aria-expanded="false"
-            aria-controls="dropdown-baking-body"
-            id="dropdown-baking-trigger"
-          >
-            <span class="dropdown__title">
-              <span class="dropdown__icon" aria-hidden="true">🔥</span>
-              Baking to Perfection
-            </span>
-            <svg class="dropdown__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div
-            class="dropdown__body"
-            id="dropdown-baking-body"
-            role="region"
-            aria-labelledby="dropdown-baking-trigger"
-          >
-            <div class="dropdown__content">
-              <p>High heat is the secret to a crispy bottom and airy crust. Preheat your oven to its maximum temperature for at least 45 minutes.</p>
-              <ul>
-                <li><strong>Pizza stone:</strong> Preheat on lowest rack for 1 hour at 260°C / 500°F</li>
-                <li><strong>Steel baking plate:</strong> Even better heat retention than stone</li>
-                <li><strong>Bake time:</strong> 7–10 minutes at max heat until crust is golden and spotty</li>
-                <li><strong>Broil finish:</strong> 60–90 seconds under broiler for top browning</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="dropdown"
-          data-dropdown
-          id="dropdown-toppings"
-        >
-          <button
-            class="dropdown__trigger"
-            aria-expanded="false"
-            aria-controls="dropdown-toppings-body"
-            id="dropdown-toppings-trigger"
-          >
-            <span class="dropdown__title">
-              <span class="dropdown__icon" aria-hidden="true">🫑</span>
-              Topping Combinations
-            </span>
-            <svg class="dropdown__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div
-            class="dropdown__body"
-            id="dropdown-toppings-body"
-            role="region"
-            aria-labelledby="dropdown-toppings-trigger"
-          >
-            <div class="dropdown__content">
-              <p>Less is more. Avoid overloading the pizza — too many toppings create steam and make the crust soggy.</p>
-              <ol>
-                <li><strong>Margherita:</strong> Tomato, mozzarella, fresh basil, olive oil</li>
-                <li><strong>Pepperoni:</strong> Tomato, mozzarella, cup-and-char pepperoni</li>
-                <li><strong>Bianca:</strong> Olive oil, ricotta, garlic, mozzarella, spinach</li>
-                <li><strong>Mushroom &amp; truffle:</strong> White sauce, mushrooms, fontina, truffle oil</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
+      Example usage is shown below. Replace the videoId value with any real
+      YouTube video ID to display the player.
+    -->
+    <section id="video-section" aria-label="Pizza Making Video">
+      <div id="pizza-video"></div>
+    </section>
+  </main>
 
   <script src="js/main.js"></script>
+  <script>
+    // Example: embed a YouTube video into #pizza-video
+    // Replace 'dQw4w9WgXcQ' with the desired YouTube video ID.
+    createYouTubeEmbed(
+      document.getElementById('pizza-video'),
+      'dQw4w9WgXcQ',
+      {
+        title: 'How to Make Pizza',
+        caption: 'Watch our step-by-step pizza making guide.'
+      }
+    );
+  </script>
+
 </body>
 </html>
