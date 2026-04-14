@@ -1,166 +1,84 @@
-/**
- * Pizza Making Guide — main.js
- * Core JavaScript for the equipment & tools section (Part 1).
- */
+/* Pizza Making Guide — Main JS */
 
-'use strict';
-
-// ---------------------------------------------------------------------------
-// Equipment & Tools Data
-// ---------------------------------------------------------------------------
-
-/** @typedef {{ id: string, icon: string, name: string, description: string, essential: boolean }} EquipmentItem */
-
-/** @type {EquipmentItem[]} */
-const EQUIPMENT_DATA = [
-  {
-    id: 'pizza-stone',
-    icon: '🪨',
-    name: 'Pizza Stone',
-    description: 'Retains and distributes heat evenly, giving your pizza a crispy, restaurant-style base.',
-    essential: true,
-  },
-  {
-    id: 'pizza-peel',
-    icon: '🍕',
-    name: 'Pizza Peel',
-    description: 'A flat paddle used to slide the pizza into and out of a hot oven safely.',
-    essential: true,
-  },
-  {
-    id: 'stand-mixer',
-    icon: '🥣',
-    name: 'Stand Mixer',
-    description: 'Makes kneading dough effortless and produces a consistent, well-developed gluten structure.',
-    essential: false,
-  },
-  {
-    id: 'rolling-pin',
-    icon: '🪄',
-    name: 'Rolling Pin',
-    description: 'Helpful for shaping dough uniformly, although hand-stretching is preferred by many pizza makers.',
-    essential: false,
-  },
-  {
-    id: 'dough-scraper',
-    icon: '🔪',
-    name: 'Bench / Dough Scraper',
-    description: 'Cuts and portions dough cleanly and helps lift sticky dough from the work surface.',
-    essential: true,
-  },
-  {
-    id: 'pizza-cutter',
-    icon: '⭕',
-    name: 'Pizza Cutter',
-    description: 'A wheel cutter or mezzaluna for slicing your finished pizza into clean portions.',
-    essential: true,
-  },
-  {
-    id: 'digital-scale',
-    icon: '⚖️',
-    name: 'Digital Kitchen Scale',
-    description: 'Weighing ingredients (especially flour) ensures recipe accuracy and consistent results every time.',
-    essential: true,
-  },
-  {
-    id: 'mixing-bowls',
-    icon: '🫙',
-    name: 'Mixing Bowls',
-    description: 'Large bowls for mixing and proofing dough, ideally with a tight-fitting lid or cling film.',
-    essential: true,
-  },
-  {
-    id: 'thermometer',
-    icon: '🌡️',
-    name: 'Instant-Read Thermometer',
-    description: 'Check dough temperature and water temperature to ensure optimal yeast activity.',
-    essential: false,
-  },
-  {
-    id: 'ladle',
-    icon: '🥄',
-    name: 'Ladle / Sauce Spreader',
-    description: 'Spreads tomato sauce in a smooth, even spiral across the pizza base without tearing it.',
-    essential: false,
-  },
-];
-
-// ---------------------------------------------------------------------------
-// Equipment Card Renderer
-// ---------------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  initTemperatureDial();
+  initSmoothScroll();
+  initIntersectionAnimations();
+});
 
 /**
- * Creates a DOM element for a single equipment item.
- * @param {EquipmentItem} item
- * @returns {HTMLElement}
+ * Animates the temperature dial indicator on the preheating step.
+ * The dial visually shows 475°F as the optimal setting.
  */
-function createEquipmentCard(item) {
-  const article = document.createElement('article');
-  article.classList.add('equipment-card');
-  article.setAttribute('role', 'listitem');
-  article.dataset.equipmentId = item.id;
+function initTemperatureDial() {
+  const indicator = document.getElementById('dialIndicator');
+  const tempDisplay = document.getElementById('dialTemp');
+  if (!indicator || !tempDisplay) return;
 
-  const badgeClass = item.essential
-    ? 'equipment-card__badge--essential'
-    : 'equipment-card__badge--optional';
-  const badgeLabel = item.essential ? 'Essential' : 'Optional';
+  // Temperature range: 350°F (0%) to 600°F (100%)
+  const MIN_TEMP = 350;
+  const MAX_TEMP = 600;
+  const TARGET_TEMP = 475;
 
-  article.innerHTML = `
-    <span class="equipment-card__icon" aria-hidden="true">${item.icon}</span>
-    <h3 class="equipment-card__name">${escapeHTML(item.name)}</h3>
-    <p class="equipment-card__description">${escapeHTML(item.description)}</p>
-    <span class="equipment-card__badge ${badgeClass}">${badgeLabel}</span>
-  `;
+  const pct = ((TARGET_TEMP - MIN_TEMP) / (MAX_TEMP - MIN_TEMP)) * 100;
 
-  return article;
+  // Animate dial to target position after a short delay
+  setTimeout(() => {
+    indicator.style.left = `${pct}%`;
+  }, 600);
+
+  // Animate temperature counter
+  let current = MIN_TEMP;
+  const step = Math.ceil((TARGET_TEMP - MIN_TEMP) / 40);
+  const interval = setInterval(() => {
+    current = Math.min(current + step, TARGET_TEMP);
+    tempDisplay.textContent = `${current}°F`;
+    if (current >= TARGET_TEMP) clearInterval(interval);
+  }, 30);
 }
 
 /**
- * Renders all equipment cards into the grid container.
- * @param {EquipmentItem[]} items
+ * Smooth scroll for in-page navigation anchors.
  */
-function renderEquipmentGrid(items) {
-  const grid = document.getElementById('equipment-grid');
-  if (!grid) {
-    console.warn('[Equipment] Grid container #equipment-grid not found.');
-    return;
-  }
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
 
-  // Clear any existing content
-  grid.innerHTML = '';
+/**
+ * Fade-in animation for major content cards when they enter the viewport.
+ */
+function initIntersectionAnimations() {
+  const targets = document.querySelectorAll(
+    '.temp-card, .equipment-card, .preheat-step, .quick-ref__item'
+  );
 
-  const fragment = document.createDocumentFragment();
-  items.forEach((item) => {
-    fragment.appendChild(createEquipmentCard(item));
+  if (!('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  targets.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = `opacity 0.4s ease ${i * 0.04}s, transform 0.4s ease ${i * 0.04}s`;
+    observer.observe(el);
   });
 
-  grid.appendChild(fragment);
-}
-
-// ---------------------------------------------------------------------------
-// Utility
-// ---------------------------------------------------------------------------
-
-/**
- * Escapes HTML special characters to prevent XSS.
- * @param {string} str
- * @returns {string}
- */
-function escapeHTML(str) {
-  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-  return String(str).replace(/[&<>"']/g, (char) => map[char]);
-}
-
-// ---------------------------------------------------------------------------
-// Initialisation
-// ---------------------------------------------------------------------------
-
-function init() {
-  renderEquipmentGrid(EQUIPMENT_DATA);
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
+  // Add visible class styles dynamically
+  const style = document.createElement('style');
+  style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
+  document.head.appendChild(style);
 }
