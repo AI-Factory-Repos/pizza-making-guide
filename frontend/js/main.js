@@ -1,134 +1,131 @@
-/* =========================================
-   Pizza Making Guide — Main JS
-   ========================================= */
+/**
+ * Pizza Making Guide — Navigation & Table of Contents
+ * Builds TOC dynamically, highlights active section via IntersectionObserver,
+ * and drives a scroll-progress bar.
+ */
 
 (function () {
   'use strict';
 
-  /* --------------------------------------------------
-     Video labels map — maps data-video-id to a human-
-     readable title shown in the modal header.
-  -------------------------------------------------- */
-  const VIDEO_LABELS = {
-    'olive-oil':         'Olive Oil Drizzle — Finishing Technique',
-    'fresh-herbs':       'Fresh Herbs — Finishing Technique',
-    'final-seasoning':   'Final Seasoning — Finishing Technique',
-    'soggy-bottom':      'Soggy Bottom — Problem & Fix',
-    'burnt-edges':       'Burnt Edges — Problem & Fix',
-    'undercooked-centre':'Undercooked Centre — Problem & Fix',
-  };
+  // ── 1. Build Table of Contents ──────────────────────────────────────────────
+  const sections = Array.from(document.querySelectorAll('.content-section'));
+  const tocList  = document.getElementById('toc-list');
 
-  /* --------------------------------------------------
-     Modal elements
-  -------------------------------------------------- */
-  const modal         = document.getElementById('video-modal');
-  const modalTitle    = document.getElementById('modal-title');
-  const modalLabel    = document.getElementById('modal-video-label');
-  const modalClose    = modal.querySelector('.video-modal__close');
-  const modalBackdrop = modal.querySelector('.video-modal__backdrop');
+  if (!tocList || sections.length === 0) return;
 
-  /* Element that had focus before the modal opened (for restoration on close) */
-  let lastFocusedElement = null;
+  sections.forEach((section) => {
+    const heading = section.querySelector('h2');
+    if (!heading) return;
 
-  /* --------------------------------------------------
-     Open modal
-  -------------------------------------------------- */
-  function openModal(videoId) {
-    const label = VIDEO_LABELS[videoId] || 'Video Demonstration';
-    modalTitle.textContent = label;
-    modalLabel.textContent = label;
-    modal.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-    modalClose.focus();
-  }
+    const id    = section.id;
+    const label = heading.textContent.trim();
 
-  /* --------------------------------------------------
-     Close modal
-  -------------------------------------------------- */
-  function closeModal() {
-    modal.setAttribute('hidden', '');
-    document.body.style.overflow = '';
-    if (lastFocusedElement) {
-      lastFocusedElement.focus();
-      lastFocusedElement = null;
-    }
-  }
+    const li = document.createElement('li');
+    li.dataset.section = id;
 
-  /* --------------------------------------------------
-     Attach play-button click handlers (event delegation)
-  -------------------------------------------------- */
-  document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.video-play-btn');
-    if (!btn) return;
+    const a = document.createElement('a');
+    a.href        = `#${id}`;
+    a.textContent = label;
+    a.setAttribute('aria-label', `Jump to ${label}`);
 
-    lastFocusedElement = btn;
-    const wrapper = btn.closest('.video-wrapper');
-    const videoId = wrapper ? wrapper.dataset.videoId : null;
-    openModal(videoId);
-  });
-
-  /* --------------------------------------------------
-     Close handlers
-  -------------------------------------------------- */
-  modalClose.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', closeModal);
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
-      closeModal();
-    }
-  });
-
-  /* --------------------------------------------------
-     Trap focus inside modal while open
-  -------------------------------------------------- */
-  modal.addEventListener('keydown', function (e) {
-    if (e.key !== 'Tab') return;
-    const focusable = Array.from(
-      modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
-    ).filter(el => !el.disabled);
-    if (focusable.length === 0) return;
-
-    const first = focusable[0];
-    const last  = focusable[focusable.length - 1];
-
-    if (e.shiftKey) {
-      if (document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
+    // Smooth scroll with JS (belt-and-suspenders for browsers that honour
+    // scroll-behavior:smooth on the html element already).
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Update URL hash without triggering a jump
+        history.pushState(null, '', `#${id}`);
       }
-    } else {
-      if (document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
+    });
+
+    li.appendChild(a);
+    tocList.appendChild(li);
   });
 
-  /* --------------------------------------------------
-     Smooth scroll active nav link highlight
-  -------------------------------------------------- */
-  const sections = document.querySelectorAll('.guide-section');
-  const navLinks = document.querySelectorAll('.main-nav a');
+  // ── 2. Active-section highlighting via IntersectionObserver ─────────────────
+  const tocItems = Array.from(tocList.querySelectorAll('li'));
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            navLinks.forEach(link => {
-              link.classList.toggle(
-                'active',
-                link.getAttribute('href') === '#' + id
-              );
-            });
-          }
-        });
-      },
-      { rootMargin: '-30% 0px -60% 0px' }
-    );
-    sections.forEach(s => observer.observe(s));
+  // Track which sections are currently intersecting
+  const visibleSections = new Set();
+
+  function updateActiveTocItem() {
+    // Find the topmost visible section (smallest offsetTop among visible)
+    let activeId = null;
+    let minTop   = Infinity;
+
+    visibleSections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top;
+        if (top < minTop) {
+          minTop   = top;
+          activeId = id;
+        }
+      }
+    });
+
+    // If nothing is intersecting, fall back to the last section above the fold
+    if (!activeId) {
+      let bestTop = -Infinity;
+      sections.forEach((section) => {
+        const top = section.getBoundingClientRect().top;
+        if (top <= 0 && top > bestTop) {
+          bestTop  = top;
+          activeId = section.id;
+        }
+      });
+    }
+
+    tocItems.forEach((li) => {
+      li.classList.toggle('active', li.dataset.section === activeId);
+    });
   }
 
-})();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          visibleSections.add(entry.target.id);
+        } else {
+          visibleSections.delete(entry.target.id);
+        }
+      });
+      updateActiveTocItem();
+    },
+    {
+      root      : null,
+      // Trigger when a section enters the top 60 % of the viewport
+      rootMargin: '0px 0px -40% 0px',
+      threshold : 0,
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  // ── 3. Scroll Progress Bar ───────────────────────────────────────────────────
+  const progressBar = document.getElementById('progress-bar');
+
+  function updateProgressBar() {
+    if (!progressBar) return;
+    const scrollTop    = window.scrollY || document.documentElement.scrollTop;
+    const docHeight    = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled     = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = `${Math.min(scrolled, 100)}%`;
+  }
+
+  window.addEventListener('scroll', updateProgressBar, { passive: true });
+  updateProgressBar(); // initialise on load
+
+  // ── 4. Honour deep-link on page load ────────────────────────────────────────
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      // Short delay lets the browser finish rendering before scrolling
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }
+}());
