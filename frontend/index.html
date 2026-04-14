@@ -10,55 +10,379 @@
   <header class="site-header">
     <div class="container">
       <h1 class="site-title">🍕 Pizza Making Guide</h1>
-      <nav class="site-nav" aria-label="Main navigation">
+      <nav class="site-nav">
         <ul>
-          <li><a href="#intro">Introduction</a></li>
-          <li><a href="#equipment">Equipment &amp; Tools</a></li>
-          <li><a href="#ingredients">Ingredients</a></li>
-          <li><a href="#steps">Steps</a></li>
+          <li><a href="#baking-fundamentals">Baking Fundamentals</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="site-main">
-    <section id="intro" class="section section--intro">
+  <main>
+    <!-- Baking Fundamentals Section -->
+    <section id="baking-fundamentals" class="baking-fundamentals">
       <div class="container">
-        <h2>Welcome to the Pizza Making Guide</h2>
-        <p>Learn everything you need to know to make the perfect pizza at home — from gathering the right equipment to pulling a golden pie out of the oven.</p>
-      </div>
-    </section>
-
-    <!-- Equipment & Tools Section -->
-    <section id="equipment" class="section section--equipment" aria-labelledby="equipment-heading">
-      <div class="container">
-        <h2 id="equipment-heading" class="section__title">Equipment &amp; Tools</h2>
-        <p class="section__intro">Having the right tools makes all the difference. Below is everything you need before you start.</p>
-
-        <div class="equipment-grid" id="equipment-grid" role="list">
-          <!-- Equipment cards are rendered here by main.js -->
+        <div class="section-header">
+          <h2>Baking Fundamentals</h2>
+          <p class="section-subtitle">Master oven temperatures and equipment to bake the perfect pizza every time.</p>
         </div>
-      </div>
-    </section>
 
-    <section id="ingredients" class="section section--ingredients">
-      <div class="container">
-        <h2>Ingredients</h2>
-        <p>Coming soon.</p>
-      </div>
-    </section>
+        <!-- Temperature Guidelines -->
+        <div class="subsection" id="temperature-guidelines">
+          <h3 class="subsection-title">🌡️ Oven Temperature Guidelines</h3>
+          <p class="subsection-desc">Temperature is the single most important factor in achieving a crispy crust and perfectly melted cheese. Home ovens and different equipment call for slightly different ranges.</p>
 
-    <section id="steps" class="section section--steps">
-      <div class="container">
-        <h2>Steps</h2>
-        <p>Coming soon.</p>
+          <div class="temperature-cards">
+            <div class="temp-card temp-card--moderate">
+              <div class="temp-card__icon">🟡</div>
+              <div class="temp-card__range">400–450°F <span class="temp-card__celsius">(205–232°C)</span></div>
+              <h4 class="temp-card__title">Moderate Heat</h4>
+              <ul class="temp-card__details">
+                <li>Best for thick-crust or deep-dish pizzas</li>
+                <li>Longer bake time: 18–25 minutes</li>
+                <li>Ideal for heavily loaded toppings</li>
+                <li>Reduces risk of burning cheese</li>
+              </ul>
+              <div class="temp-card__badge">Thick Crust</div>
+            </div>
+
+            <div class="temp-card temp-card--hot">
+              <div class="temp-card__icon">🔴</div>
+              <div class="temp-card__range">450–500°F <span class="temp-card__celsius">(232–260°C)</span></div>
+              <h4 class="temp-card__title">High Heat — Recommended</h4>
+              <ul class="temp-card__details">
+                <li>Ideal for classic Neapolitan-style pizza</li>
+                <li>Bake time: 8–12 minutes</li>
+                <li>Produces crispy bottom with soft interior</li>
+                <li>Encourages proper oven spring in the crust</li>
+              </ul>
+              <div class="temp-card__badge temp-card__badge--recommended">★ Recommended</div>
+            </div>
+
+            <div class="temp-card temp-card--max">
+              <div class="temp-card__icon">🔥</div>
+              <div class="temp-card__range">500–550°F <span class="temp-card__celsius">(260–288°C)</span></div>
+              <h4 class="temp-card__title">Maximum Heat</h4>
+              <ul class="temp-card__details">
+                <li>Pizza stone or steel required</li>
+                <li>Bake time: 5–8 minutes</li>
+                <li>Closest to wood-fired oven results</li>
+                <li>Watch closely — edges char quickly</li>
+              </ul>
+              <div class="temp-card__badge">Expert Level</div>
+            </div>
+          </div>
+
+          <!-- Temperature Indicator Bar -->
+          <div class="temp-indicator">
+            <div class="temp-indicator__label">Temperature Range Reference</div>
+            <div class="temp-indicator__bar">
+              <div class="temp-indicator__segment temp-indicator__segment--low">
+                <span>400°F</span>
+              </div>
+              <div class="temp-indicator__segment temp-indicator__segment--mid">
+                <span>450°F</span>
+                <div class="temp-indicator__marker">Best Range</div>
+              </div>
+              <div class="temp-indicator__segment temp-indicator__segment--high">
+                <span>500°F</span>
+              </div>
+              <div class="temp-indicator__segment temp-indicator__segment--max">
+                <span>550°F</span>
+              </div>
+            </div>
+            <div class="temp-indicator__legend">
+              <span class="legend-item legend-item--low">Moderate</span>
+              <span class="legend-item legend-item--mid">Recommended</span>
+              <span class="legend-item legend-item--high">High</span>
+              <span class="legend-item legend-item--max">Maximum</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Equipment Comparison -->
+        <div class="subsection" id="equipment-comparison">
+          <h3 class="subsection-title">🍳 Equipment Comparison</h3>
+          <p class="subsection-desc">Your choice of baking surface dramatically affects the final crust. Compare the two most common home-oven options below.</p>
+
+          <div class="equipment-comparison">
+            <!-- Pizza Stone -->
+            <div class="equipment-card" id="pizza-stone">
+              <div class="equipment-card__visual">
+                <div class="equipment-icon equipment-icon--stone">
+                  <div class="stone-shape">
+                    <span class="stone-label">Pizza Stone</span>
+                    <div class="stone-texture"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="equipment-card__content">
+                <h4>Pizza Stone / Steel</h4>
+                <p class="equipment-card__tagline">The professional's choice for home ovens</p>
+                <div class="equipment-pros-cons">
+                  <div class="pros">
+                    <h5>✅ Advantages</h5>
+                    <ul>
+                      <li>Retains and radiates intense, even heat</li>
+                      <li>Absorbs moisture for crispier crust</li>
+                      <li>Mimics wood-fired oven floor</li>
+                      <li>Better oven spring and char on edges</li>
+                      <li>Durable — lasts for years</li>
+                    </ul>
+                  </div>
+                  <div class="cons">
+                    <h5>⚠️ Considerations</h5>
+                    <ul>
+                      <li>Requires 45–60 min preheat</li>
+                      <li>Heavy and fragile — avoid thermal shock</li>
+                      <li>Must be dry before use</li>
+                      <li>Higher upfront cost (~$30–$80)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="equipment-card__tip">
+                  <strong>Pro Tip:</strong> Pizza steel conducts heat better than stone and is more durable. If choosing between them, opt for steel.
+                </div>
+              </div>
+            </div>
+
+            <div class="equipment-vs">VS</div>
+
+            <!-- Baking Sheet -->
+            <div class="equipment-card" id="baking-sheet">
+              <div class="equipment-card__visual">
+                <div class="equipment-icon equipment-icon--sheet">
+                  <div class="sheet-shape">
+                    <span class="sheet-label">Baking Sheet</span>
+                    <div class="sheet-holes">
+                      <span></span><span></span><span></span>
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="equipment-card__content">
+                <h4>Baking Sheet / Sheet Pan</h4>
+                <p class="equipment-card__tagline">The accessible option for beginners</p>
+                <div class="equipment-pros-cons">
+                  <div class="pros">
+                    <h5>✅ Advantages</h5>
+                    <ul>
+                      <li>Already in most kitchens — no extra cost</li>
+                      <li>Easy to transfer pizza in and out</li>
+                      <li>Good for pan-style or Sicilian pizzas</li>
+                      <li>Shorter preheat: 20–30 min</li>
+                      <li>Lightweight and easy to handle</li>
+                    </ul>
+                  </div>
+                  <div class="cons">
+                    <h5>⚠️ Considerations</h5>
+                    <ul>
+                      <li>Less heat retention than stone/steel</li>
+                      <li>Can produce a softer, less crispy base</li>
+                      <li>May result in uneven browning</li>
+                      <li>Thin pans warp at high temps</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="equipment-card__tip">
+                  <strong>Pro Tip:</strong> Preheat your baking sheet in the oven before adding the pizza to get a crispier bottom crust.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comparison Summary Table -->
+          <div class="comparison-table-wrap">
+            <h4 class="comparison-table-title">Quick Comparison</h4>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Pizza Stone / Steel</th>
+                  <th>Baking Sheet</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Heat Retention</td>
+                  <td class="table-good">Excellent</td>
+                  <td class="table-ok">Moderate</td>
+                </tr>
+                <tr>
+                  <td>Crust Crispiness</td>
+                  <td class="table-good">High</td>
+                  <td class="table-ok">Medium</td>
+                </tr>
+                <tr>
+                  <td>Preheat Time</td>
+                  <td class="table-warn">45–60 min</td>
+                  <td class="table-good">20–30 min</td>
+                </tr>
+                <tr>
+                  <td>Best For</td>
+                  <td>Thin / Neapolitan</td>
+                  <td>Pan / Sicilian</td>
+                </tr>
+                <tr>
+                  <td>Cost</td>
+                  <td class="table-warn">$30–$80</td>
+                  <td class="table-good">Already owned</td>
+                </tr>
+                <tr>
+                  <td>Difficulty</td>
+                  <td class="table-warn">Intermediate</td>
+                  <td class="table-good">Beginner</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Preheating Instructions -->
+        <div class="subsection" id="preheating-instructions">
+          <h3 class="subsection-title">⏱️ Preheating Instructions</h3>
+          <p class="subsection-desc">Proper preheating is non-negotiable. A cold or under-heated oven is the #1 cause of soggy, undercooked pizza.</p>
+
+          <div class="preheat-steps">
+            <div class="preheat-step">
+              <div class="preheat-step__number">1</div>
+              <div class="preheat-step__content">
+                <h4>Position Your Rack</h4>
+                <p>Place your oven rack in the <strong>lower-middle to middle position</strong>. For pizza stone/steel, place it on the rack before turning on the oven. Never put a cold stone into a hot oven — thermal shock can crack it.</p>
+                <div class="preheat-step__visual">
+                  <div class="oven-diagram">
+                    <div class="oven-body">
+                      <div class="oven-rack oven-rack--top"></div>
+                      <div class="oven-rack oven-rack--middle oven-rack--active">
+                        <div class="rack-label">← Recommended Position</div>
+                      </div>
+                      <div class="oven-rack oven-rack--bottom"></div>
+                    </div>
+                    <div class="oven-label">Oven Interior</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="preheat-step">
+              <div class="preheat-step__number">2</div>
+              <div class="preheat-step__content">
+                <h4>Set the Temperature</h4>
+                <p>Set your oven to <strong>450–500°F (232–260°C)</strong>. If your oven has a convection setting, use it — convection circulates hot air and reduces bake time by 10–15%.</p>
+                <div class="temp-dial">
+                  <div class="temp-dial__track">
+                    <div class="temp-dial__fill" id="dialFill"></div>
+                    <div class="temp-dial__indicator" id="dialIndicator"></div>
+                  </div>
+                  <div class="temp-dial__display">
+                    <span id="dialTemp">475°F</span>
+                    <span class="temp-dial__sub">Optimal Setting</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="preheat-step">
+              <div class="preheat-step__number">3</div>
+              <div class="preheat-step__content">
+                <h4>Wait for Full Preheat</h4>
+                <p>Wait until your oven signals it has reached temperature — then wait <strong>an additional 15–30 minutes</strong>. The oven thermostat beeps when the air is hot, but your stone or steel needs more time to fully absorb that heat.</p>
+                <div class="preheat-timeline">
+                  <div class="timeline-bar">
+                    <div class="timeline-segment" style="width:30%">
+                      <span>Oven on</span>
+                    </div>
+                    <div class="timeline-segment timeline-segment--mid" style="width:40%">
+                      <span>Beep — air temp reached</span>
+                    </div>
+                    <div class="timeline-segment timeline-segment--end" style="width:30%">
+                      <span>Stone/steel ready</span>
+                    </div>
+                  </div>
+                  <div class="timeline-times">
+                    <span>0 min</span>
+                    <span>~20 min</span>
+                    <span>~45–60 min</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="preheat-step">
+              <div class="preheat-step__number">4</div>
+              <div class="preheat-step__content">
+                <h4>Use the Broiler (Optional)</h4>
+                <p>For the last 1–2 minutes of your bake, switch to <strong>broil</strong> to finish the top of the pizza. Watch it carefully — cheese can go from bubbly to burnt in seconds.</p>
+                <div class="broil-warning">
+                  <span class="broil-warning__icon">⚠️</span>
+                  <span>Never leave the oven unattended when broiling. Stay close and check every 30 seconds.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="preheat-step">
+              <div class="preheat-step__number">5</div>
+              <div class="preheat-step__content">
+                <h4>Bake and Check Doneness</h4>
+                <p>Slide your pizza onto the hot surface and bake for the time appropriate to your temperature range. A properly baked pizza has a <strong>golden-brown bottom</strong>, bubbling cheese, and lightly charred edges.</p>
+                <div class="doneness-indicators">
+                  <div class="doneness-item">
+                    <div class="doneness-icon doneness-icon--crust">🟤</div>
+                    <span>Golden-brown crust bottom</span>
+                  </div>
+                  <div class="doneness-item">
+                    <div class="doneness-icon doneness-icon--cheese">🧀</div>
+                    <span>Bubbling, lightly browned cheese</span>
+                  </div>
+                  <div class="doneness-item">
+                    <div class="doneness-icon doneness-icon--edge">🔥</div>
+                    <span>Light char on crust edges</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Reference Card -->
+        <div class="quick-ref" id="quick-reference">
+          <h3 class="quick-ref__title">📋 Quick Reference</h3>
+          <div class="quick-ref__grid">
+            <div class="quick-ref__item">
+              <div class="quick-ref__label">Recommended Temp</div>
+              <div class="quick-ref__value">450–500°F</div>
+            </div>
+            <div class="quick-ref__item">
+              <div class="quick-ref__label">Stone Preheat Time</div>
+              <div class="quick-ref__value">45–60 min</div>
+            </div>
+            <div class="quick-ref__item">
+              <div class="quick-ref__label">Sheet Preheat Time</div>
+              <div class="quick-ref__value">20–30 min</div>
+            </div>
+            <div class="quick-ref__item">
+              <div class="quick-ref__label">Bake Time (High Heat)</div>
+              <div class="quick-ref__value">8–12 min</div>
+            </div>
+            <div class="quick-ref__item">
+              <div class="quick-ref__label">Rack Position</div>
+              <div class="quick-ref__value">Lower-Middle</div>
+            </div>
+            <div class="quick-ref__item">
+              <div class="quick-ref__label">Broil Finish</div>
+              <div class="quick-ref__value">1–2 min (optional)</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2024 Pizza Making Guide. All rights reserved.</p>
+      <p>🍕 Pizza Making Guide — Baking Fundamentals</p>
     </div>
   </footer>
 
