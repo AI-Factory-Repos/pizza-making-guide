@@ -8,274 +8,95 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="container">
-      <h1>🍕 The Complete Pizza Making Guide</h1>
-      <p class="tagline">From dough to perfection — every step covered</p>
-    </div>
-  </header>
+  <!-- Progress bar -->
+  <div id="progress-bar" aria-hidden="true"></div>
 
-  <nav class="main-nav" aria-label="Guide sections">
-    <div class="container">
-      <ul>
-        <li><a href="#finishing-techniques">Finishing Techniques</a></li>
-        <li><a href="#troubleshooting">Troubleshooting</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div class="layout">
+    <!-- Sidebar TOC -->
+    <aside id="toc-sidebar" aria-label="Table of contents">
+      <nav id="toc">
+        <h2 class="toc-title">Contents</h2>
+        <ol id="toc-list"></ol>
+      </nav>
+    </aside>
 
-  <main class="container">
+    <!-- Main content -->
+    <main id="main-content">
+      <header class="guide-header">
+        <h1>🍕 The Complete Pizza Making Guide</h1>
+        <p class="subtitle">From dough to delicious — everything you need to know.</p>
+      </header>
 
-    <!-- ===== FINISHING TECHNIQUES ===== -->
-    <section id="finishing-techniques" class="guide-section">
-      <h2>Finishing Techniques</h2>
-      <p class="section-intro">The final touches transform a good pizza into a great one. Master these three finishing techniques to elevate every bake.</p>
-
-      <div class="techniques-grid">
-
-        <!-- Olive Oil Drizzle -->
-        <article class="technique-card" id="olive-oil-drizzle">
-          <div class="technique-icon" aria-hidden="true">🫒</div>
-          <h3>Olive Oil Drizzle</h3>
-          <p>A generous drizzle of high-quality extra-virgin olive oil added <strong>immediately after baking</strong> adds richness, gloss, and depth of flavour.</p>
-          <ul class="technique-steps">
-            <li>Use a good-quality extra-virgin olive oil with fruity, peppery notes.</li>
-            <li>Pull the pizza from the oven and let it rest on a wire rack for 60 seconds.</li>
-            <li>Drizzle in a thin, circular motion from the centre outward — about 1–2 tablespoons.</li>
-            <li>Avoid pooling oil in the centre; keep it light and even.</li>
+      <article>
+        <section id="ingredients" class="content-section">
+          <h2>Ingredients</h2>
+          <p>Great pizza starts with quality ingredients. For a classic Neapolitan pizza you will need:</p>
+          <ul>
+            <li>500 g tipo 00 flour (or bread flour)</li>
+            <li>325 ml lukewarm water</li>
+            <li>10 g fine sea salt</li>
+            <li>7 g active dry yeast (or 3 g instant yeast)</li>
+            <li>1 tsp sugar</li>
+            <li>2 tbsp extra-virgin olive oil</li>
           </ul>
-          <div class="video-demo">
-            <div class="video-wrapper" data-video-id="olive-oil">
-              <button class="video-play-btn" aria-label="Play olive oil drizzle demonstration video">
-                <span class="play-icon" aria-hidden="true">▶</span>
-                <span>Watch Demonstration</span>
-              </button>
-              <div class="video-placeholder" role="img" aria-label="Olive oil drizzle technique preview thumbnail">
-                <span class="video-thumb-icon" aria-hidden="true">🎬</span>
-                <p>Olive Oil Drizzle — Video Demo</p>
-              </div>
-            </div>
-          </div>
-        </article>
+          <p>For the sauce, use San Marzano tomatoes, fresh basil, garlic, and a pinch of salt. Keep toppings minimal so each flavour shines.</p>
+        </section>
 
-        <!-- Fresh Herbs -->
-        <article class="technique-card" id="fresh-herbs">
-          <div class="technique-icon" aria-hidden="true">🌿</div>
-          <h3>Fresh Herbs</h3>
-          <p>Fresh herbs added <strong>after baking</strong> retain their colour, aroma, and brightness — never wilt them in the oven.</p>
-          <ul class="technique-steps">
-            <li><strong>Basil:</strong> Tear leaves by hand and scatter over the pizza just before serving.</li>
-            <li><strong>Oregano:</strong> Rub dried or fresh leaves between your fingers to release oils, then sprinkle.</li>
-            <li><strong>Rocket / Arugula:</strong> Lightly dress with lemon juice and layer on top for a peppery finish.</li>
-            <li><strong>Chilli flakes:</strong> Add a pinch for heat; pair with fennel sausage or pepperoni toppings.</li>
+        <section id="dough" class="content-section">
+          <h2>Making the Dough</h2>
+          <p>Combine yeast, sugar, and warm water; let bloom for 5 minutes. Mix flour and salt in a large bowl, create a well, pour in the yeast mixture and olive oil, then stir until a shaggy dough forms.</p>
+          <p>Turn the dough out onto a lightly floured surface and knead for 8–10 minutes until smooth and elastic. Alternatively, use a stand mixer with a dough hook on medium speed for 6 minutes.</p>
+          <p>Shape into a ball, place in an oiled bowl, cover with plastic wrap, and let rise at room temperature for 1–2 hours until doubled.</p>
+        </section>
+
+        <section id="fermentation" class="content-section">
+          <h2>Fermentation</h2>
+          <p>Cold fermentation dramatically improves flavour and texture. After the initial rise, punch down the dough, divide into 2–4 balls (≈ 250 g each), place in individual oiled containers, cover, and refrigerate for 24–72 hours.</p>
+          <p>Remove dough 1–2 hours before baking so it can come to room temperature and relax, making shaping much easier.</p>
+        </section>
+
+        <section id="shaping" class="content-section">
+          <h2>Shaping the Pizza</h2>
+          <p>Flour your surface well. Press the dough ball flat with your fingers, working from the centre outward and leaving a 1 cm border for the crust. Stretch the dough over your knuckles, rotating gently, until you reach your desired size (28–30 cm is ideal).</p>
+          <p>Avoid using a rolling pin — it degases the dough and ruins the airy crust. If the dough springs back, let it rest for 5 minutes before continuing.</p>
+        </section>
+
+        <section id="sauce" class="content-section">
+          <h2>Preparing the Sauce</h2>
+          <p>Crush whole San Marzano tomatoes by hand into a bowl. Add 2 crushed garlic cloves, a handful of fresh basil, a pinch of salt, and a drizzle of olive oil. Do not cook the sauce — it will cook perfectly in the oven.</p>
+          <p>Spread a thin, even layer of sauce over the shaped dough, leaving the border clear. Less is more; a soggy pizza is a sad pizza.</p>
+        </section>
+
+        <section id="toppings" class="content-section">
+          <h2>Toppings</h2>
+          <p>Layer fresh mozzarella (torn, not sliced) over the sauce. Add any additional toppings sparingly — pepperoni, roasted vegetables, olives, or anchovies all work well. Finish with a drizzle of olive oil.</p>
+          <p>Always add fresh herbs like basil <em>after</em> baking to preserve their colour and aroma.</p>
+        </section>
+
+        <section id="baking" class="content-section">
+          <h2>Baking</h2>
+          <p>Preheat your oven to its maximum temperature (typically 250–290 °C / 480–550 °F) with a pizza stone or steel on the middle rack for at least 45–60 minutes. The stone must be screaming hot.</p>
+          <p>Transfer the topped pizza to a lightly floured pizza peel. Slide it onto the stone and bake for 7–10 minutes until the crust is golden-brown and the cheese is bubbling with charred spots.</p>
+        </section>
+
+        <section id="serving" class="content-section">
+          <h2>Serving</h2>
+          <p>Slide the pizza onto a wooden board and let it rest for 2 minutes — this keeps the base crisp. Add fresh basil, a crack of black pepper, and a final drizzle of extra-virgin olive oil before slicing.</p>
+          <p>Cut with a sharp pizza wheel or a large knife and serve immediately. Pizza waits for no one.</p>
+        </section>
+
+        <section id="tips" class="content-section">
+          <h2>Tips &amp; Troubleshooting</h2>
+          <ul>
+            <li><strong>Dough too sticky?</strong> Add flour 1 tbsp at a time — don't overdo it.</li>
+            <li><strong>Dough not rising?</strong> Check your yeast isn't expired; water should be 38–40 °C.</li>
+            <li><strong>Soggy centre?</strong> Use less sauce and make sure the oven is fully preheated.</li>
+            <li><strong>Burnt crust?</strong> Move the rack down or reduce temperature by 10 °C.</li>
+            <li><strong>No pizza stone?</strong> Use a heavy baking sheet preheated upside-down.</li>
           </ul>
-          <div class="video-demo">
-            <div class="video-wrapper" data-video-id="fresh-herbs">
-              <button class="video-play-btn" aria-label="Play fresh herbs demonstration video">
-                <span class="play-icon" aria-hidden="true">▶</span>
-                <span>Watch Demonstration</span>
-              </button>
-              <div class="video-placeholder" role="img" aria-label="Fresh herbs technique preview thumbnail">
-                <span class="video-thumb-icon" aria-hidden="true">🎬</span>
-                <p>Fresh Herbs — Video Demo</p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Final Seasoning -->
-        <article class="technique-card" id="final-seasoning">
-          <div class="technique-icon" aria-hidden="true">🧂</div>
-          <h3>Final Seasoning</h3>
-          <p>A last-minute seasoning pass just before serving can make every ingredient shine. Taste, then adjust.</p>
-          <ul class="technique-steps">
-            <li><strong>Flaky sea salt:</strong> A pinch on the crust adds crunch and contrast.</li>
-            <li><strong>Black pepper:</strong> Freshly cracked pepper over cheese or egg-topped pizzas is essential.</li>
-            <li><strong>Lemon zest:</strong> Microplane fresh zest over seafood or vegetable pizzas for brightness.</li>
-            <li><strong>Parmesan or Pecorino:</strong> Finely grate over the top just before slicing for a salty, umami hit.</li>
-          </ul>
-          <div class="video-demo">
-            <div class="video-wrapper" data-video-id="final-seasoning">
-              <button class="video-play-btn" aria-label="Play final seasoning demonstration video">
-                <span class="play-icon" aria-hidden="true">▶</span>
-                <span>Watch Demonstration</span>
-              </button>
-              <div class="video-placeholder" role="img" aria-label="Final seasoning technique preview thumbnail">
-                <span class="video-thumb-icon" aria-hidden="true">🎬</span>
-                <p>Final Seasoning — Video Demo</p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ===== TROUBLESHOOTING GUIDE ===== -->
-    <section id="troubleshooting" class="guide-section">
-      <h2>Common Baking Problems &amp; Solutions</h2>
-      <p class="section-intro">Even experienced pizza makers encounter baking issues. Use this guide to diagnose problems and fix them before the next bake.</p>
-
-      <div class="problems-list">
-
-        <!-- Soggy Bottom -->
-        <article class="problem-card" id="soggy-bottom">
-          <header class="problem-header">
-            <span class="problem-badge problem-badge--warning" aria-label="Warning level">⚠️ Common</span>
-            <h3>Soggy Bottom</h3>
-          </header>
-          <div class="problem-body">
-            <div class="problem-detail">
-              <h4>Symptoms</h4>
-              <p>The base of the pizza is wet, chewy, or not fully cooked even though the toppings look done. The crust lacks crispness and may feel limp when lifted.</p>
-
-              <h4>Causes</h4>
-              <ul>
-                <li>Too much sauce or wet toppings releasing moisture during baking.</li>
-                <li>Oven or stone not preheated to full temperature before baking.</li>
-                <li>Dough stretched too thin in the centre.</li>
-                <li>Baking on a cold or damp surface.</li>
-              </ul>
-
-              <h4>Solutions</h4>
-              <ul class="solutions-list">
-                <li>✅ Preheat your oven and pizza stone or steel for <strong>at least 45–60 minutes</strong> at maximum temperature.</li>
-                <li>✅ Spread sauce in a thin, even layer — leave a visible margin at the edge.</li>
-                <li>✅ Pat wet toppings (fresh mozzarella, mushrooms, tomatoes) dry with paper towels before use.</li>
-                <li>✅ Par-bake the base for 3–4 minutes before adding toppings if moisture is a persistent issue.</li>
-                <li>✅ Use a pizza screen or perforated pan to allow airflow under the base.</li>
-              </ul>
-            </div>
-
-            <div class="video-demo">
-              <div class="video-wrapper" data-video-id="soggy-bottom">
-                <button class="video-play-btn" aria-label="Play soggy bottom identification and fix video">
-                  <span class="play-icon" aria-hidden="true">▶</span>
-                  <span>Watch Problem &amp; Fix</span>
-                </button>
-                <div class="video-placeholder" role="img" aria-label="Soggy bottom problem identification preview thumbnail">
-                  <span class="video-thumb-icon" aria-hidden="true">🎬</span>
-                  <p>Soggy Bottom — Problem &amp; Fix</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Burnt Edges -->
-        <article class="problem-card" id="burnt-edges">
-          <header class="problem-header">
-            <span class="problem-badge problem-badge--danger" aria-label="Danger level">🔴 Frustrating</span>
-            <h3>Burnt Edges</h3>
-          </header>
-          <div class="problem-body">
-            <div class="problem-detail">
-              <h4>Symptoms</h4>
-              <p>The cornicione (crust edge) chars or burns black while the centre is still cooking. The edges may taste bitter or acrid.</p>
-
-              <h4>Causes</h4>
-              <ul>
-                <li>Oven temperature too high, especially in smaller ovens with intense top heat.</li>
-                <li>Pizza positioned too close to the top heating element or broiler.</li>
-                <li>Sugar or honey in the dough recipe accelerating browning.</li>
-                <li>Toppings placed too close to the edge.</li>
-              </ul>
-
-              <h4>Solutions</h4>
-              <ul class="solutions-list">
-                <li>✅ Move the rack to the <strong>lower third</strong> of the oven to balance top and bottom heat.</li>
-                <li>✅ Shield exposed crust with small strips of aluminium foil after it reaches desired colour.</li>
-                <li>✅ Reduce oven temperature by 10–15 °C if you see the crust browning within the first 3 minutes.</li>
-                <li>✅ Extend sauce and cheese to within 1.5 cm of the edge to protect and insulate the crust.</li>
-                <li>✅ Reduce or eliminate added sugars in your dough if burning is a recurring issue.</li>
-              </ul>
-            </div>
-
-            <div class="video-demo">
-              <div class="video-wrapper" data-video-id="burnt-edges">
-                <button class="video-play-btn" aria-label="Play burnt edges identification and fix video">
-                  <span class="play-icon" aria-hidden="true">▶</span>
-                  <span>Watch Problem &amp; Fix</span>
-                </button>
-                <div class="video-placeholder" role="img" aria-label="Burnt edges problem identification preview thumbnail">
-                  <span class="video-thumb-icon" aria-hidden="true">🎬</span>
-                  <p>Burnt Edges — Problem &amp; Fix</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Undercooked Centre -->
-        <article class="problem-card" id="undercooked-centre">
-          <header class="problem-header">
-            <span class="problem-badge problem-badge--warning" aria-label="Warning level">⚠️ Common</span>
-            <h3>Undercooked Centre</h3>
-          </header>
-          <div class="problem-body">
-            <div class="problem-detail">
-              <h4>Symptoms</h4>
-              <p>The pizza looks done on the outside but the centre of the base is doughy, pale, or gummy. Cheese may be fully melted while the dough underneath is raw.</p>
-
-              <h4>Causes</h4>
-              <ul>
-                <li>Too many toppings weighing down the centre and insulating the dough from heat.</li>
-                <li>Dough base too thick in the centre.</li>
-                <li>Oven not hot enough or stone not fully preheated.</li>
-                <li>Opening the oven door too frequently causing heat loss.</li>
-              </ul>
-
-              <h4>Solutions</h4>
-              <ul class="solutions-list">
-                <li>✅ Use fewer toppings — a Neapolitan pizza uses <strong>less than you think</strong>.</li>
-                <li>✅ Stretch the dough more evenly so the centre is no thicker than the rest of the base.</li>
-                <li>✅ Bake directly on a preheated pizza stone or steel for maximum base heat transfer.</li>
-                <li>✅ If the top is done but the base isn't, slide the pizza off the tray and onto the oven floor for 1–2 minutes.</li>
-                <li>✅ Check doneness by lifting an edge with a spatula — the base should be firm and golden, not pale.</li>
-              </ul>
-            </div>
-
-            <div class="video-demo">
-              <div class="video-wrapper" data-video-id="undercooked-centre">
-                <button class="video-play-btn" aria-label="Play undercooked centre identification and fix video">
-                  <span class="play-icon" aria-hidden="true">▶</span>
-                  <span>Watch Problem &amp; Fix</span>
-                </button>
-                <div class="video-placeholder" role="img" aria-label="Undercooked centre problem identification preview thumbnail">
-                  <span class="video-thumb-icon" aria-hidden="true">🎬</span>
-                  <p>Undercooked Centre — Problem &amp; Fix</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2024 Pizza Making Guide. Happy baking! 🍕</p>
-    </div>
-  </footer>
-
-  <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
-    <div class="video-modal__backdrop"></div>
-    <div class="video-modal__content">
-      <div class="video-modal__header">
-        <h2 id="modal-title" class="video-modal__title">Video Demonstration</h2>
-        <button class="video-modal__close" aria-label="Close video">&times;</button>
-      </div>
-      <div class="video-modal__body">
-        <div class="video-modal__screen" id="modal-screen">
-          <span aria-hidden="true">🎬</span>
-          <p id="modal-video-label">Video player placeholder</p>
-          <p class="video-modal__note">In a production environment, embed your video source (YouTube, Vimeo, or self-hosted) here using an <code>&lt;iframe&gt;</code> or <code>&lt;video&gt;</code> element.</p>
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </main>
   </div>
 
   <script src="js/main.js"></script>
