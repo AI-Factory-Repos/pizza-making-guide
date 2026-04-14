@@ -1,121 +1,159 @@
 /**
- * Dropdown Component System
- * Provides expand/collapse behaviour with smooth animation,
- * ARIA attribute management, and full keyboard navigation.
+ * YouTube Video Embed Component
+ *
+ * Usage:
+ *   createYouTubeEmbed(container, videoId, options)
+ *
+ * Options:
+ *   title   {string}  - accessible title for the iframe (default: 'YouTube video')
+ *   caption {string}  - optional caption displayed below the player
  */
 
-(function () {
-  'use strict';
+/**
+ * Validates a YouTube video ID.
+ * YouTube video IDs are 11 characters consisting of [A-Za-z0-9_-].
+ * @param {string} id
+ * @returns {boolean}
+ */
+function isValidYouTubeId(id) {
+  return typeof id === 'string' && /^[A-Za-z0-9_-]{11}$/.test(id);
+}
 
-  /**
-   * Initialise a single dropdown element.
-   * @param {HTMLElement} dropdown - Element with [data-dropdown] attribute.
-   */
-  function initDropdown(dropdown) {
-    const trigger = dropdown.querySelector('.dropdown__trigger');
-    const body = dropdown.querySelector('.dropdown__body');
+/**
+ * Creates a responsive YouTube embed inside the given container element.
+ * Shows a loading placeholder, then renders the iframe or an error message.
+ *
+ * @param {HTMLElement} container - DOM element to render into
+ * @param {string}      videoId  - YouTube video ID
+ * @param {Object}      [options]
+ * @param {string}      [options.title='YouTube video'] - iframe accessible title
+ * @param {string}      [options.caption]               - optional caption text
+ */
+function createYouTubeEmbed(container, videoId, options = {}) {
+  const { title = 'YouTube video', caption = '' } = options;
 
-    if (!trigger || !body) return;
+  // Wrap everything in the outer container div
+  const wrapper = document.createElement('div');
+  wrapper.className = 'video-embed-container';
 
-    // Ensure initial closed state is correctly reflected
-    body.style.maxHeight = '0px';
-    trigger.setAttribute('aria-expanded', 'false');
-
-    trigger.addEventListener('click', () => toggleDropdown(dropdown, trigger, body));
-
-    trigger.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleDropdown(dropdown, trigger, body);
-      }
-    });
+  if (!isValidYouTubeId(videoId)) {
+    wrapper.appendChild(buildErrorState('Invalid video ID', 'The provided YouTube video ID is not valid. Please check the ID and try again.'));
+    if (caption) wrapper.appendChild(buildCaption(caption));
+    container.appendChild(wrapper);
+    return;
   }
 
-  /**
-   * Toggle the open/closed state of a dropdown.
-   * @param {HTMLElement} dropdown
-   * @param {HTMLElement} trigger
-   * @param {HTMLElement} body
-   */
-  function toggleDropdown(dropdown, trigger, body) {
-    const isOpen = dropdown.classList.contains('dropdown--open');
+  // Show loading state while iframe loads
+  const loadingEl = buildLoadingState();
+  wrapper.appendChild(loadingEl);
+  if (caption) wrapper.appendChild(buildCaption(caption));
+  container.appendChild(wrapper);
 
-    if (isOpen) {
-      closeDropdown(dropdown, trigger, body);
-    } else {
-      openDropdown(dropdown, trigger, body);
-    }
-  }
+  // Build iframe
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0`;
+  iframe.title = title;
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  iframe.allowFullscreen = true;
+  iframe.loading = 'lazy';
 
-  /**
-   * Open a dropdown with animation.
-   * @param {HTMLElement} dropdown
-   * @param {HTMLElement} trigger
-   * @param {HTMLElement} body
-   */
-  function openDropdown(dropdown, trigger, body) {
-    dropdown.classList.add('dropdown--open');
-    trigger.setAttribute('aria-expanded', 'true');
+  iframe.addEventListener('load', () => {
+    // Replace loading placeholder with the real embed wrapper
+    const embedWrapper = document.createElement('div');
+    embedWrapper.className = 'video-embed-wrapper';
+    embedWrapper.appendChild(iframe);
+    wrapper.replaceChild(embedWrapper, loadingEl);
+  });
 
-    // Measure the natural height of the content before animating
-    body.style.maxHeight = 'none';
-    const fullHeight = body.scrollHeight;
-    body.style.maxHeight = '0px';
+  iframe.addEventListener('error', () => {
+    const errorEl = buildErrorState('Video unavailable', 'This video could not be loaded. It may have been removed or made private.');
+    wrapper.replaceChild(errorEl, loadingEl);
+  });
 
-    // Force reflow so the transition fires from 0
-    // eslint-disable-next-line no-unused-expressions
-    body.offsetHeight;
+  // Append iframe to DOM to trigger load
+  const hiddenWrapper = document.createElement('div');
+  hiddenWrapper.style.display = 'none';
+  hiddenWrapper.appendChild(iframe);
+  document.body.appendChild(hiddenWrapper);
 
-    body.style.maxHeight = fullHeight + 'px';
+  // Move iframe into visible wrapper once DOM is ready
+  // (load event fires after appendChild to visible DOM)
+  const embedWrapper = document.createElement('div');
+  embedWrapper.className = 'video-embed-wrapper';
+  hiddenWrapper.remove();
+  embedWrapper.appendChild(iframe);
+  wrapper.replaceChild(embedWrapper, loadingEl);
+}
 
-    body.addEventListener('transitionend', function onTransitionEnd() {
-      // Allow the body to grow if content size changes (e.g. nested dropdowns)
-      if (dropdown.classList.contains('dropdown--open')) {
-        body.style.maxHeight = 'none';
-      }
-      body.removeEventListener('transitionend', onTransitionEnd);
-    });
-  }
+/**
+ * Builds the loading placeholder element.
+ * @returns {HTMLElement}
+ */
+function buildLoadingState() {
+  const outer = document.createElement('div');
+  outer.className = 'video-embed-loading';
 
-  /**
-   * Close a dropdown with animation.
-   * @param {HTMLElement} dropdown
-   * @param {HTMLElement} trigger
-   * @param {HTMLElement} body
-   */
-  function closeDropdown(dropdown, trigger, body) {
-    // Snap max-height back to a pixel value so CSS transition can animate from it
-    body.style.maxHeight = body.scrollHeight + 'px';
+  const inner = document.createElement('div');
+  inner.className = 'video-embed-loading-content';
 
-    // Force reflow
-    // eslint-disable-next-line no-unused-expressions
-    body.offsetHeight;
+  const spinner = document.createElement('div');
+  spinner.className = 'video-embed-spinner';
+  spinner.setAttribute('role', 'status');
+  spinner.setAttribute('aria-label', 'Loading video…');
 
-    body.style.maxHeight = '0px';
-    dropdown.classList.remove('dropdown--open');
-    trigger.setAttribute('aria-expanded', 'false');
-  }
+  inner.appendChild(spinner);
+  outer.appendChild(inner);
+  return outer;
+}
 
-  /**
-   * Initialise all dropdowns on the page.
-   */
-  function initAllDropdowns() {
-    const dropdowns = document.querySelectorAll('[data-dropdown]');
-    dropdowns.forEach(initDropdown);
-  }
+/**
+ * Builds the error state element.
+ * @param {string} title
+ * @param {string} message
+ * @returns {HTMLElement}
+ */
+function buildErrorState(title, message) {
+  const outer = document.createElement('div');
+  outer.className = 'video-embed-error';
+  outer.setAttribute('role', 'alert');
+  outer.setAttribute('aria-live', 'assertive');
 
-  // Boot on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAllDropdowns);
-  } else {
-    initAllDropdowns();
-  }
+  const inner = document.createElement('div');
+  inner.className = 'video-embed-error-content';
 
-  // Expose API for programmatic usage if needed
-  window.DropdownSystem = {
-    init: initAllDropdowns,
-    open: openDropdown,
-    close: closeDropdown,
-    toggle: toggleDropdown,
-  };
-}());
+  const icon = document.createElement('div');
+  icon.className = 'video-embed-error-icon';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = '⚠️';
+
+  const titleEl = document.createElement('p');
+  titleEl.className = 'video-embed-error-title';
+  titleEl.textContent = title;
+
+  const msgEl = document.createElement('p');
+  msgEl.className = 'video-embed-error-message';
+  msgEl.textContent = message;
+
+  inner.appendChild(icon);
+  inner.appendChild(titleEl);
+  inner.appendChild(msgEl);
+  outer.appendChild(inner);
+  return outer;
+}
+
+/**
+ * Builds a caption element.
+ * @param {string} text
+ * @returns {HTMLElement}
+ */
+function buildCaption(text) {
+  const p = document.createElement('p');
+  p.className = 'video-embed-caption';
+  p.textContent = text;
+  return p;
+}
+
+// Export for use in other modules if needed
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { createYouTubeEmbed, isValidYouTubeId };
+}
