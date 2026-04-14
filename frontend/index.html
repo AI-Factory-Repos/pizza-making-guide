@@ -3,139 +3,239 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#c0392b" />
   <title>Pizza Making Guide</title>
+
+  <!-- Canonical stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Print-only stylesheet (also reinforced by @media print inside the file) -->
+  <link rel="stylesheet" href="css/print.css" media="print" />
+
+  <!-- Web App Manifest for PWA/offline support -->
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
 
-  <header class="site-header">
-    <h1>🍕 Pizza Making Guide</h1>
-    <p class="site-subtitle">Everything you need to make the perfect pizza at home</p>
+  <!-- =====================================================
+       PRINT HEADER  (hidden on screen, shown when printing)
+       Injected dynamically by qr-codes.js; defined here as
+       a fallback for non-JS environments.
+  ====================================================== -->
+  <div class="print-header" style="display:none" aria-hidden="true">
+    <h1>Pizza Making Guide</h1>
+    <p>Printed reference — visit the site online for video tutorials.</p>
+  </div>
 
-    <div class="search-container">
-      <label for="site-search" class="sr-only">Search guide content</label>
-      <input
-        type="search"
-        id="site-search"
-        class="search-input"
-        placeholder="Search the guide…"
-        autocomplete="off"
-        aria-label="Search guide content"
-      />
-      <span class="search-icon" aria-hidden="true">🔍</span>
+  <!-- =====================================================
+       OFFLINE BANNER  (injected by JS when navigator.onLine
+       is false; hidden by default)
+  ====================================================== -->
+
+  <!-- =====================================================
+       SITE HEADER
+  ====================================================== -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">🍕 Pizza Making Guide</h1>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#dough">Dough</a>
+        <a href="#sauce">Sauce</a>
+        <a href="#toppings">Toppings</a>
+        <a href="#baking">Baking</a>
+      </nav>
     </div>
   </header>
 
-  <div id="no-results" class="no-results" hidden>
-    <p>😕 No results found for "<span id="no-results-query"></span>". Try a different search term.</p>
-  </div>
+  <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
+  <main class="main-content">
+    <div class="container">
 
-  <main id="guide-content">
+      <!-- Introduction -->
+      <section id="intro">
+        <h2>Welcome</h2>
+        <p>
+          This guide walks you through every step of making a perfect homemade pizza —
+          from mixing the dough to pulling a golden pie from the oven.
+        </p>
+        <p class="tip">
+          <strong>Tip:</strong> Print this page for a handy kitchen reference.
+          QR codes are automatically generated in the printed version so you can
+          scan and watch the video tutorials on your phone.
+        </p>
+      </section>
 
-    <section class="guide-section" data-section="dough">
-      <button class="section-toggle" aria-expanded="false" aria-controls="dough-body">
-        <span class="section-title">Making the Dough</span>
-        <span class="toggle-icon" aria-hidden="true">▶</span>
-      </button>
-      <div class="section-body" id="dough-body" hidden>
-        <div class="video-block">
-          <div class="video-placeholder" aria-label="Video: How to Make Pizza Dough">
-            <span class="play-icon" aria-hidden="true">▶</span>
-          </div>
-          <p class="video-description">Learn how to prepare the perfect pizza dough using flour, water, yeast, salt, and olive oil. This step-by-step video walks you through kneading, rising, and shaping your dough for a crispy, chewy crust.</p>
+      <!-- ── DOUGH ───────────────────────────────────────── -->
+      <section id="dough">
+        <h2>1. The Dough</h2>
+
+        <h3>Ingredients</h3>
+        <ul class="ingredients">
+          <li>500 g (4 cups) bread flour</li>
+          <li>7 g (2¼ tsp) active dry yeast</li>
+          <li>325 ml (1⅓ cups) warm water (38 °C / 100 °F)</li>
+          <li>10 g (2 tsp) fine sea salt</li>
+          <li>15 ml (1 tbsp) olive oil</li>
+          <li>5 g (1 tsp) sugar</li>
+        </ul>
+
+        <h3>Method</h3>
+        <ol>
+          <li>Dissolve sugar and yeast in warm water. Rest 10 minutes until foamy.</li>
+          <li>Mix flour and salt in a large bowl. Make a well in the centre.</li>
+          <li>Pour in the yeast mixture and olive oil. Stir to combine.</li>
+          <li>Turn onto a lightly floured surface and knead 8–10 minutes until smooth and elastic.</li>
+          <li>Shape into a ball, oil lightly, cover and prove 1–2 hours until doubled.</li>
+          <li>Divide into two 400 g dough balls. Use immediately or refrigerate up to 72 hours.</li>
+        </ol>
+
+        <!-- Video tutorial — replaced by QR code when printing -->
+        <div
+          class="video-wrapper"
+          data-video-url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          data-video-title="Pizza Dough Tutorial">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Pizza Dough Tutorial"
+            width="560" height="315"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
-        <div class="instructions">
-          <h3>Instructions</h3>
+      </section>
+
+      <!-- ── SAUCE ───────────────────────────────────────── -->
+      <section id="sauce">
+        <h2>2. The Sauce</h2>
+
+        <div class="recipe-card">
+          <h3>Classic Tomato Sauce</h3>
+          <ul class="ingredients">
+            <li>400 g (14 oz) canned San Marzano tomatoes</li>
+            <li>2 cloves garlic, minced</li>
+            <li>15 ml (1 tbsp) olive oil</li>
+            <li>Salt and freshly ground pepper to taste</li>
+            <li>Fresh basil leaves</li>
+          </ul>
           <ol>
-            <li>Combine 3 cups of all-purpose flour, 1 packet of active dry yeast, 1 tsp salt, and 1 tbsp olive oil in a large bowl.</li>
-            <li>Gradually add 1 cup of warm water and mix until a sticky dough forms.</li>
-            <li>Knead the dough on a floured surface for 8–10 minutes until smooth and elastic.</li>
-            <li>Place in an oiled bowl, cover with a damp cloth, and let rise for 1–2 hours until doubled in size.</li>
-            <li>Punch down the dough and shape it into your desired pizza base.</li>
+            <li>Crush tomatoes by hand into a bowl. Remove any tough cores.</li>
+            <li>Sauté garlic in olive oil 60 seconds over medium heat.</li>
+            <li>Add tomatoes, season generously. Simmer 15 minutes.</li>
+            <li>Finish with torn basil. No cooking needed for authentic Neapolitan sauce.</li>
           </ol>
         </div>
-      </div>
-    </section>
 
-    <section class="guide-section" data-section="sauce">
-      <button class="section-toggle" aria-expanded="false" aria-controls="sauce-body">
-        <span class="section-title">Preparing the Sauce</span>
-        <span class="toggle-icon" aria-hidden="true">▶</span>
-      </button>
-      <div class="section-body" id="sauce-body" hidden>
-        <div class="video-block">
-          <div class="video-placeholder" aria-label="Video: Classic Tomato Pizza Sauce">
-            <span class="play-icon" aria-hidden="true">▶</span>
-          </div>
-          <p class="video-description">Discover the secret to a rich, flavourful tomato sauce using San Marzano tomatoes, garlic, basil, and oregano. This quick no-cook sauce brings authentic Italian taste to every slice.</p>
+        <div
+          class="video-wrapper"
+          data-video-url="https://www.youtube.com/watch?v=VIDEO_SAUCE_ID"
+          data-video-title="Pizza Sauce Tutorial">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_SAUCE_ID"
+            title="Pizza Sauce Tutorial"
+            width="560" height="315"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
         </div>
-        <div class="instructions">
-          <h3>Instructions</h3>
+      </section>
+
+      <!-- ── TOPPINGS ─────────────────────────────────────── -->
+      <section id="toppings">
+        <h2>3. Toppings</h2>
+        <p>Less is more. Classic Margherita needs only three things:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Topping</th>
+              <th>Amount (per pizza)</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fresh mozzarella</td>
+              <td>125 g</td>
+              <td>Torn, well-drained</td>
+            </tr>
+            <tr>
+              <td>Tomato sauce</td>
+              <td>80–100 ml</td>
+              <td>Spread thinly</td>
+            </tr>
+            <tr>
+              <td>Fresh basil</td>
+              <td>6–8 leaves</td>
+              <td>Add after baking</td>
+            </tr>
+            <tr>
+              <td>Extra-virgin olive oil</td>
+              <td>1 drizzle</td>
+              <td>Finish before serving</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ── BAKING ───────────────────────────────────────── -->
+      <section id="baking">
+        <h2>4. Baking</h2>
+        <div class="step-card">
+          <h3>Oven Setup</h3>
+          <p>
+            Place a pizza stone or heavy baking tray on the highest rack.
+            Heat your oven to its maximum temperature (typically 250–280 °C / 480–535 °F)
+            for at least <strong>45–60 minutes</strong> before baking.
+          </p>
+        </div>
+        <div class="step-card">
+          <h3>Shaping &amp; Launching</h3>
           <ol>
-            <li>Crush one 400 g can of San Marzano tomatoes by hand or with a fork.</li>
-            <li>Mix in 2 cloves of minced garlic, 1 tsp dried oregano, and a handful of fresh basil leaves.</li>
-            <li>Season with salt and a pinch of sugar to balance the acidity.</li>
-            <li>Drizzle with olive oil and stir well. No cooking required — the oven does the work!</li>
+            <li>Dust a pizza peel generously with semolina or flour.</li>
+            <li>Stretch dough ball to 30–32 cm by hand — no rolling pin.</li>
+            <li>Add sauce, then cheese. Work quickly so dough does not stick.</li>
+            <li>Slide pizza onto the hot stone. Bake 7–10 minutes until crust is charred at the edges.</li>
           </ol>
         </div>
-      </div>
-    </section>
 
-    <section class="guide-section" data-section="toppings">
-      <button class="section-toggle" aria-expanded="false" aria-controls="toppings-body">
-        <span class="section-title">Choosing Your Toppings</span>
-        <span class="toggle-icon" aria-hidden="true">▶</span>
-      </button>
-      <div class="section-body" id="toppings-body" hidden>
-        <div class="video-block">
-          <div class="video-placeholder" aria-label="Video: Best Pizza Toppings Combinations">
-            <span class="play-icon" aria-hidden="true">▶</span>
-          </div>
-          <p class="video-description">Explore classic and creative topping combinations — from Margherita with fresh mozzarella and basil to BBQ chicken, roasted vegetables, and prosciutto. Learn how to balance flavours and avoid a soggy pizza.</p>
+        <div
+          class="video-wrapper"
+          data-video-url="https://www.youtube.com/watch?v=VIDEO_BAKING_ID"
+          data-video-title="Pizza Baking Techniques">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_BAKING_ID"
+            title="Pizza Baking Techniques"
+            width="560" height="315"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
         </div>
-        <div class="instructions">
-          <h3>Instructions</h3>
-          <ol>
-            <li>Spread the tomato sauce evenly over the stretched dough, leaving a 2 cm border for the crust.</li>
-            <li>Tear fresh mozzarella and scatter over the sauce.</li>
-            <li>Add your chosen toppings sparingly — less is more for even cooking.</li>
-            <li>Finish with a drizzle of olive oil and a sprinkle of sea salt.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="guide-section" data-section="baking">
-      <button class="section-toggle" aria-expanded="false" aria-controls="baking-body">
-        <span class="section-title">Baking the Pizza</span>
-        <span class="toggle-icon" aria-hidden="true">▶</span>
-      </button>
-      <div class="section-body" id="baking-body" hidden>
-        <div class="video-block">
-          <div class="video-placeholder" aria-label="Video: How to Bake the Perfect Pizza">
-            <span class="play-icon" aria-hidden="true">▶</span>
-          </div>
-          <p class="video-description">Master oven temperatures, pizza stone techniques, and timing to achieve a perfectly golden, crispy base with bubbling, melted cheese on top. Includes tips for both conventional and fan-assisted ovens.</p>
-        </div>
-        <div class="instructions">
-          <h3>Instructions</h3>
-          <ol>
-            <li>Preheat your oven to its maximum temperature (usually 250–280 °C / 480–540 °F) for at least 30 minutes.</li>
-            <li>If using a pizza stone or steel, place it in the oven during preheating.</li>
-            <li>Slide the assembled pizza onto the hot stone or a baking tray lined with parchment paper.</li>
-            <li>Bake for 8–12 minutes until the crust is golden and the cheese is bubbling and slightly browned.</li>
-            <li>Remove from the oven, slice, and serve immediately.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
+    </div><!-- /.container -->
   </main>
 
+  <!-- =====================================================
+       SITE FOOTER
+  ====================================================== -->
   <footer class="site-footer">
-    <p>© 2024 Pizza Making Guide. Buon appetito! 🍕</p>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Pizza Making Guide. All rights reserved.</p>
+    </div>
   </footer>
 
+  <!-- =====================================================
+       PRINT FOOTER  (hidden on screen)
+  ====================================================== -->
+  <div class="print-footer" style="display:none" aria-hidden="true"></div>
+
+  <!-- Scripts -->
   <script src="js/main.js"></script>
+  <script src="js/qr-codes.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
